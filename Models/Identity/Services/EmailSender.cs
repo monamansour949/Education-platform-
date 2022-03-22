@@ -14,8 +14,8 @@ namespace ProjectItiTeam.Models.Identity.Services
 
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            string fromMail = "";
-            string fromPassword = "";
+            string fromMail = "speaky.pl@gmail.com";
+            string fromPassword = "PL.speaky1998";
             string style = "<br/> <h1 style='color:white;background-color:red;padding:10px;'> Website Learn English ... Confirm Email </h1>";
             MailMessage message = new MailMessage();
             message.From = new MailAddress(fromMail);
@@ -31,6 +31,8 @@ namespace ProjectItiTeam.Models.Identity.Services
                 EnableSsl = true,
             };
             smtpClient.Send(message);
+           // return Task.CompletedTask;
+
         }
 
     }

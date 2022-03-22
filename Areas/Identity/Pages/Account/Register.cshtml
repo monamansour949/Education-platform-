@@ -1,5 +1,6 @@
 ﻿@page
 @model RegisterModel
+@using ProjectItiTeam.Models.Identity
 @{
 
     ViewData["Title"] = "Register";
@@ -80,7 +81,25 @@
                              <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                        </div>
                   </div>
-                
+                   @if (User.IsInRole(SD.Admin))
+                {
+                      <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-4 offset-2">
+                                 <input type="radio" name="rdUserRole"  value="@SD.Admin" class="custom-radio"/> @SD.Admin
+                            </div>
+                            <div class="col-4">
+                                  <input type="radio" name="rdUserRole" checked value="@SD.Manager" class="custom-radio"/> @SD.Manager
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }else {
+                    <input type="hidden" checked name="rdUserRole"  value="@SD.user"  class="custom-radio"/> 
+                }
+              
             <div class="mt-4">
                 <button type="submit" class="btn btn-primary w-100">Register</button>
             </div>

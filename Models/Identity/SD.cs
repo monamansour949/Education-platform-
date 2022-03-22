@@ -2,10 +2,9 @@
 {
     public class SD
     {
-        public const string ManagerUser = "Manager";
-        public const string OrdinaryUser = "Ordinary";
-        public const string AdminUser = "Admin";
-        public const string JournalistUser = "Journalist";
+        public const string Manager = "Manager";
+        public const string user = "user";
+        public const string Admin  = "Admin";
 
 
         public static string ConvertToRawHtml(string source)
