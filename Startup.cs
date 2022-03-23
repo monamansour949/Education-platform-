@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.SignalR;
 using ProjectItiTeam.Data;
 using ProjectItiTeam.Models.Identity.Services;
 using ProjectItiTeam.Models.Identity;
+using ProjectItiTeam.Models.Identity.Repositery;
 
 namespace ProjectItiTeam
 {
@@ -69,7 +70,7 @@ namespace ProjectItiTeam
                   options.Cookie.HttpOnly = true;
               });
 
-
+            services.AddScoped<IRepositery, RepositeryUser>();
 
            // services.AddTransient<IEmailSender, EmailSender>();
 
