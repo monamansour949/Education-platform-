@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ProjectItiTeam.Models;
 using ProjectItiTeam.Models.Identity;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,10 @@ namespace ProjectItiTeam.Data
         {
         }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Level> levels { get; set; }
     }
 }
