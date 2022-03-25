@@ -75,13 +75,9 @@ namespace ProjectItiTeam
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<ILevelRepository, LevelRepository>();
             services.AddScoped<IExamRepository, ExamRepository>();
-
+            services.AddScoped<IBAox,basketRepo>();
             //services.AddTransient<IEmailSender, EmailSender>();
-
-            // setting auth 
             services.AddAuthentication();
-
-           
         }
         // dotnet user-secrets set "1w93753039045-9bi5alng6f249p163k5vobgvi8q3t82s.apps.googleusercontent.com"
         // dotnet user-secrets set "Authentication:Google:ClientSecret" "<client-secret>"

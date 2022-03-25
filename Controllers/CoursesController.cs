@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectItiTeam.Models;
+using ProjectItiTeam.Models.ViewModel;
 using ProjectItiTeam.Repository;
 using System.Collections.Generic;
 
@@ -8,10 +9,12 @@ namespace ProjectItiTeam.Controllers
     public class CoursesController : Controller
     {
         ICourseRepository CourseRepository;
+        private readonly ILevelRepository repo;
 
-        public CoursesController(ICourseRepository courseRepository)
+        public CoursesController(ICourseRepository courseRepository,ILevelRepository repo)
         {
             this.CourseRepository = courseRepository;
+            this.repo = repo;
         }
         public IActionResult Index()
         {
@@ -59,8 +62,13 @@ namespace ProjectItiTeam.Controllers
 
         public IActionResult Details(int id)
         {
-            Course course = CourseRepository.GetById(id);
-            return View(course);
+            dataTab_detVM model = new dataTab_detVM();
+
+            model.courses = CourseRepository.GetById(id);
+            model.coursesLi = CourseRepository.GetAll();
+            model.Level = repo.GetAll();
+
+            return View(model);
         }
         [HttpGet]
         public IActionResult Delete(int id)

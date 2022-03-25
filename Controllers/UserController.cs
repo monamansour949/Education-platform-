@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectItiTeam.Data.Seed;
 using ProjectItiTeam.Models.Identity.Repositery;
+using ProjectItiTeam.Models.ViewModel;
+using ProjectItiTeam.Repository;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -11,9 +13,12 @@ namespace ProjectItiTeam.Controllers
     public class UserController : Controller
     {
         private readonly Models.Identity.Repositery.IRepositery repositery;
-        public UserController(IRepositery repositery)
+        private readonly IBAox repo;
+
+        public UserController(IRepositery repositery, IBAox repo)
         {
             this.repositery = repositery;
+            this.repo = repo;
         }
         public async Task<ActionResult> Index()
         {
@@ -43,6 +48,27 @@ namespace ProjectItiTeam.Controllers
             repositery.UNLockUser(id);
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult AddBs(Table model)
+        {
+            if (ModelState.IsValid)
+            {
+                 
+                try
+                {
+                    var clamidentity = (ClaimsIdentity)this.User.Identity;
+                    var clams = clamidentity.FindFirst(ClaimTypes.NameIdentifier);
 
+                    model.ApplicationUserID = clams.Value;
+                    
+                    repo.Insert(model);
+                }
+                catch (System.Exception)
+                {
+                    return View();
+                }
+            }
+            return View();
+
+        }
     }
 }
