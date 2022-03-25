@@ -22,5 +22,8 @@ namespace ProjectItiTeam.Data
         public DbSet<Table> Tables { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Level> levels { get; set; }
+        public DbSet<Video> Videos { get; set; }
+        public DbSet<Audio> Audios { get; set; }
+        public DbSet<Rate> Rates { get; set; }
     }
 }
