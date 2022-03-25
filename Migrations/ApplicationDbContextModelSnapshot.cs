@@ -221,6 +221,35 @@ namespace ProjectItiTeam.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ProjectItiTeam.Models.Audio", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(90)
+                        .HasColumnType("nvarchar(90)");
+
+                    b.Property<int>("Level_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("User_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("Level_ID");
+
+                    b.ToTable("Audios");
+                });
+
             modelBuilder.Entity("ProjectItiTeam.Models.Course", b =>
                 {
                     b.Property<int>("Id")
@@ -289,6 +318,62 @@ namespace ProjectItiTeam.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("levels");
+                });
+
+            modelBuilder.Entity("ProjectItiTeam.Models.Rate", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Course_ID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Stars")
+                        .HasMaxLength(5)
+                        .HasColumnType("int");
+
+                    b.Property<int>("User_ID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("Course_ID");
+
+                    b.ToTable("Rates");
+                });
+
+            modelBuilder.Entity("ProjectItiTeam.Models.Video", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Course_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(90)
+                        .HasColumnType("nvarchar(90)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("User_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("Course_ID");
+
+                    b.ToTable("Videos");
                 });
 
             modelBuilder.Entity("ProjectItiTeam.Models.ViewModel.Table", b =>
@@ -388,6 +473,17 @@ namespace ProjectItiTeam.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProjectItiTeam.Models.Audio", b =>
+                {
+                    b.HasOne("ProjectItiTeam.Models.Level", "Level")
+                        .WithMany()
+                        .HasForeignKey("Level_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Level");
+                });
+
             modelBuilder.Entity("ProjectItiTeam.Models.Course", b =>
                 {
                     b.HasOne("ProjectItiTeam.Models.Level", "Level")
@@ -404,6 +500,28 @@ namespace ProjectItiTeam.Migrations
                     b.HasOne("ProjectItiTeam.Models.Course", "Course")
                         .WithMany()
                         .HasForeignKey("Course_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("ProjectItiTeam.Models.Rate", b =>
+                {
+                    b.HasOne("ProjectItiTeam.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("Course_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("ProjectItiTeam.Models.Video", b =>
+                {
+                    b.HasOne("ProjectItiTeam.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("Course_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

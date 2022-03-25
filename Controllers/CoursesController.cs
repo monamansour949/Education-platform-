@@ -51,7 +51,6 @@ namespace ProjectItiTeam.Controllers
         {
             if (ModelState.IsValid == true)
             {
-
                 CourseRepository.Update(id, newcourse);
                 return RedirectToAction("Index");
             }

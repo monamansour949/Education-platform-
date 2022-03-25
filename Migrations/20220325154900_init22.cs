@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectItiTeam.Migrations
 {
-    public partial class init : Migration
+    public partial class init22 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,6 +64,21 @@ namespace ProjectItiTeam.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_levels", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tables",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationUserID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Course = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tables", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,6 +188,28 @@ namespace ProjectItiTeam.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Audios",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(90)", maxLength: 90, nullable: true),
+                    Level_ID = table.Column<int>(type: "int", nullable: false),
+                    User_Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Audios", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Audios_levels_Level_ID",
+                        column: x => x.Level_ID,
+                        principalTable: "levels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Courses",
                 columns: table => new
                 {
@@ -212,6 +249,50 @@ namespace ProjectItiTeam.Migrations
                     table.ForeignKey(
                         name: "FK_Exams_Courses_Course_Id",
                         column: x => x.Course_Id,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rates",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Stars = table.Column<int>(type: "int", maxLength: 5, nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Course_ID = table.Column<int>(type: "int", nullable: false),
+                    User_ID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rates", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Rates_Courses_Course_ID",
+                        column: x => x.Course_ID,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Videos",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(90)", maxLength: 90, nullable: true),
+                    Course_ID = table.Column<int>(type: "int", nullable: false),
+                    User_Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Videos", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Videos_Courses_Course_ID",
+                        column: x => x.Course_ID,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -257,6 +338,11 @@ namespace ProjectItiTeam.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Audios_Level_ID",
+                table: "Audios",
+                column: "Level_ID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Courses_Level_Id",
                 table: "Courses",
                 column: "Level_Id");
@@ -265,6 +351,16 @@ namespace ProjectItiTeam.Migrations
                 name: "IX_Exams_Course_Id",
                 table: "Exams",
                 column: "Course_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rates_Course_ID",
+                table: "Rates",
+                column: "Course_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Videos_Course_ID",
+                table: "Videos",
+                column: "Course_ID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -285,7 +381,19 @@ namespace ProjectItiTeam.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Audios");
+
+            migrationBuilder.DropTable(
                 name: "Exams");
+
+            migrationBuilder.DropTable(
+                name: "Rates");
+
+            migrationBuilder.DropTable(
+                name: "Tables");
+
+            migrationBuilder.DropTable(
+                name: "Videos");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
