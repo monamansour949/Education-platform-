@@ -20,13 +20,13 @@ namespace ProjectItiTeam.Controllers
             return View(courses);
         }
 
-        public IActionResult New()
+        public IActionResult Create()
         {
             return View(new Course());
         }
 
         [HttpPost]
-        public IActionResult SaveNew(Course course)
+        public IActionResult Create(Course course)
         {
             if (course.Name != null && course.Level_Id != 0)
             {
@@ -44,7 +44,7 @@ namespace ProjectItiTeam.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveEdit([FromRoute] int id, Course newcourse)
+        public IActionResult Edit([FromRoute] int id, Course newcourse)
         {
             if (ModelState.IsValid == true)
             {
@@ -57,20 +57,16 @@ namespace ProjectItiTeam.Controllers
             return View("Edit", newcourse);
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult Details(int id)
         {
             Course course = CourseRepository.GetById(id);
-            return View("Delete", course);
+            return View(course);
         }
-
-        [HttpPost]
-        public IActionResult SaveDelete(int id)
+        [HttpGet]
+        public IActionResult Delete(int id)
         {
             CourseRepository.Delete(id);
             return RedirectToAction("Index");
-
-
         }
     }
-
 }

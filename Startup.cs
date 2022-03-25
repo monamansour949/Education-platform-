@@ -18,6 +18,7 @@ using ProjectItiTeam.Data;
 using ProjectItiTeam.Models.Identity.Services;
 using ProjectItiTeam.Models.Identity;
 using ProjectItiTeam.Models.Identity.Repositery;
+using ProjectItiTeam.Repository;
 
 namespace ProjectItiTeam
 {
@@ -71,14 +72,15 @@ namespace ProjectItiTeam
               });
 
             services.AddScoped<IRepositery, RepositeryUser>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<ILevelRepository, LevelRepository>();
+            services.AddScoped<IExamRepository, ExamRepository>();
 
-           // services.AddTransient<IEmailSender, EmailSender>();
+            //services.AddTransient<IEmailSender, EmailSender>();
 
             // setting auth 
             services.AddAuthentication();
 
-            services.AddDbContext<ProjectItiTeamContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ProjectItiTeamContext")));
            
         }
         // dotnet user-secrets set "1w93753039045-9bi5alng6f249p163k5vobgvi8q3t82s.apps.googleusercontent.com"
