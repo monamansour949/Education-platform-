@@ -20,12 +20,10 @@ namespace ProjectItiTeam.Models.Identity.Repositery
             var data = await context.ApplicationUsers.ToListAsync();
             return data;
         }
-
         public Task<ApplicationUser> GetById(string? id)
         {
             throw new NotImplementedException();
         }
-
         public async Task<IEnumerable<ApplicationUser>> GetByIDTolist(string? id)
         {
             var data = await context.ApplicationUsers.Where(x => x.Id != id).ToListAsync();
@@ -36,9 +34,7 @@ namespace ProjectItiTeam.Models.Identity.Repositery
             var userfromDB = context.ApplicationUsers.FirstOrDefault(x => x.Id == UserID);
             userfromDB.LockoutEnd = DateTime.Now.AddYears(1000);
             context.SaveChanges();
-
         }
-
         public void UNLockUser(string UserID)
         {
             var userfromDB = context.ApplicationUsers.FirstOrDefault(x => x.Id == UserID);

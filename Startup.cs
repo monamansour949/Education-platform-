@@ -76,6 +76,9 @@ namespace ProjectItiTeam
 
             // setting auth 
             services.AddAuthentication();
+
+            services.AddDbContext<ProjectItiTeamContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ProjectItiTeamContext")));
            
         }
         // dotnet user-secrets set "1w93753039045-9bi5alng6f249p163k5vobgvi8q3t82s.apps.googleusercontent.com"
