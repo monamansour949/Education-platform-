@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectItiTeam.Models.ViewModel.dataTab_detVM>
+﻿@model ProjectItiTeam.Models.ViewModel.dataTab_detVM
 
 @{
     ViewData["Title"] = "Details";
@@ -7,28 +7,60 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 ">
-            <div class="p-2 border box-shadow">
+            <div class="p-4 rounded border box-shadow ">
                 <form asp-action="" method="post">
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-md-4">
-                            <label>
-                                @*@Html.DisplayNameFor(model => model.Name)*@
-                            </label>
+                               <label>Level Course</label>
                         </div> 
                         <div class="col-md-8">
-                            <input class="form-control" value="M" />
+                            <input readonly class="form-control" value="@Model.courses.Level.Name" />
+                        </div>
+                    </div>
+                     <div class="row mt-3">
+                        <div class="col-md-4">
+                               <label>
+                                   @Html.DisplayNameFor(model => model.courses.Name)
+                               </label>
+                        </div> 
+                        <div class="col-md-8">
+                            <input readonly class="form-control" value="@Model.courses.Name" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                               <label>
+                                   @Html.DisplayNameFor(model => model.courses.Date)
+                               </label>
+                        </div> 
+                        <div class="col-md-8">
+                            <input readonly class="form-control" value="@Model.courses.Date" />
+                        </div>
+                    </div>
+                     <div class="row mt-3">
+                        <div class="col-md-4">
+                               <label>
+                                   @Html.DisplayNameFor(model => model.courses.User_Id)
+                               </label>
+                        </div> 
+                        <div class="col-md-8">
+                            <input readonly class="form-control" value="@Model.courses.User_Id" />
                         </div>
                     </div>
                 </form>
             </div>
         </div>
          <div class="col-md-4">
-
+             <div class="alert alert-primary">
+                 Some Courses
+             </div>
+             @foreach (var item in Model.coursesLi.Take(10))
+            {
+                <h2 class="bg-dark text-light p-1 rounded box-shadow text-center">@item.Name</h2>
+            }
         </div>
     </div>
 </div>
-
-
 
 @*
 <h1>Details</h1>

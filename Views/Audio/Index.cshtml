@@ -33,8 +33,10 @@
                 <td>@Html.DisplayFor(m => g.Level_ID)</td>
                 <td>@Html.DisplayFor(m => g.User_Id)</td>
                 <td>
-                    <a asp-action="Update" asp-route-id="@g.ID" class="btn btn-secondary">Edit</a> | <a asp-action="Delete" asp-route-id="@g.ID" class="btn btn-danger">Delete</a> | 
-                    <a asp-action="Add" asp-controller="Cart" asp-route-id="@g.ID" class="btn btn-primary">Add to cart</a>
+
+                    <a asp-action="Update" asp-route-id="@g.ID" class="btn btn-secondary">Edit <i class="fa fa-edit"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@g.ID" class="btn btn-danger">Delete <i class="fa fa-info"></i></a> | 
+                    <a asp-action="Add" asp-controller="Cart" asp-route-id="@g.ID" class="btn btn-primary">Add to cart <i class="fa fa-trash"></i></a>
                 </td>
             </tr>
         }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectItiTeam.Migrations
 {
-    public partial class init22 : Migration
+    public partial class init3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -218,7 +218,7 @@ namespace ProjectItiTeam.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Level_Id = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    User_Id = table.Column<int>(type: "int", nullable: false)
+                    User_Id = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

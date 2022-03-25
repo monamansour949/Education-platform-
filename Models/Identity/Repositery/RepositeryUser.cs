@@ -20,9 +20,10 @@ namespace ProjectItiTeam.Models.Identity.Repositery
             var data = await context.ApplicationUsers.ToListAsync();
             return data;
         }
-        public Task<ApplicationUser> GetById(string? id)
+        public async Task<ApplicationUser> GetById(string? id)
         {
-            throw new NotImplementedException();
+            var data = await context.ApplicationUsers.FirstOrDefaultAsync(x=>x.Id==id);
+            return data;
         }
         public async Task<IEnumerable<ApplicationUser>> GetByIDTolist(string? id)
         {

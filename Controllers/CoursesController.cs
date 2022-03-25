@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectItiTeam.Models;
+using ProjectItiTeam.Models.Identity.Repositery;
 using ProjectItiTeam.Models.ViewModel;
 using ProjectItiTeam.Repository;
 using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace ProjectItiTeam.Controllers
 {
@@ -10,11 +13,13 @@ namespace ProjectItiTeam.Controllers
     {
         ICourseRepository CourseRepository;
         private readonly ILevelRepository LevelRepository;
+        private readonly IRepositery repositery;
 
-        public CoursesController(ICourseRepository courseRepository,ILevelRepository repo)
+        public CoursesController(ICourseRepository courseRepository,ILevelRepository repo, IRepositery repositery)
         {
             this.CourseRepository = courseRepository;
             this.LevelRepository = repo;
+            this.repositery = repositery;
         }
         public IActionResult Index()
         {
@@ -30,14 +35,20 @@ namespace ProjectItiTeam.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Course course)
+        public async Task<ActionResult> Create(Course course)
         {
             if (course.Name != null && course.Level_Id != 0)
             {
+                var clamidentity = (ClaimsIdentity)this.User.Identity;
+                var clams = clamidentity.FindFirst(ClaimTypes.NameIdentifier);
+
+                var data =await repositery.GetById(clams.Value);
+                course.User_Id = data.Name;
                 CourseRepository.Insert(course);
+                ViewBag.Levels = LevelRepository.GetAll();
                 return RedirectToAction("Index");
             }
-            return View("New", course);
+            return View(course);
         }
 
         public IActionResult Edit(int id)
@@ -45,7 +56,7 @@ namespace ProjectItiTeam.Controllers
             Course course = CourseRepository.GetById(id);
             ViewBag.LevelList = LevelRepository.GetAll();
 
-            return View("Edit", course);
+            return View(course);
         }
 
         [HttpPost]

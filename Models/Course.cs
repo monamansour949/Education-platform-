@@ -10,7 +10,7 @@ namespace ProjectItiTeam.Models
         [ForeignKey("Level")]
         public int Level_Id { get; set; }
         public DateTime Date { get; set; }
-        public int User_Id { get; set; }
+        public string User_Id { get; set; }
         public virtual Level Level { get; set; }
 
     }

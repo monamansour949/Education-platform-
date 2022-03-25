@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.User_Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Level)
+                @Html.DisplayNameFor(model => model.Level.Name)
             </th>
             <th></th>
         </tr>
@@ -40,12 +40,18 @@
                 @Html.DisplayFor(modelItem => item.User_Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Level.Id)
+                @Html.DisplayFor(modelItem => item.Level.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.Id">Edit
+                    <i class="fa fa-edit"></i>
+                </a> |
+                <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Id">Details
+                    <i class="fa fa-info"></i>
+                </a> |
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete
+                    <i class="fa fa-trash"></i>
+                </a>
             </td>
         </tr>
 }

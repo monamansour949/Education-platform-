@@ -266,8 +266,8 @@ namespace ProjectItiTeam.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("User_Id")
-                        .HasColumnType("int");
+                    b.Property<string>("User_Id")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
