@@ -8,9 +8,11 @@ namespace ProjectItiTeam.Controllers
     public class ExamsController : Controller
     {
         IExamRepository ExamRepository;
-        public ExamsController(IExamRepository examRepository)
+        ICourseRepository courseRepository;
+        public ExamsController(IExamRepository examRepository, ICourseRepository courseRepository)
         {
             this.ExamRepository = examRepository;
+            this.courseRepository = courseRepository;
         }
         public IActionResult Index()
         {
@@ -19,6 +21,7 @@ namespace ProjectItiTeam.Controllers
         }
         public IActionResult Create()
         {
+            ViewBag.CourseList = courseRepository.GetAll();
             return View(new Exam());
         }
         [HttpPost]
@@ -34,6 +37,7 @@ namespace ProjectItiTeam.Controllers
         public IActionResult Edit(int id)
         {
             Exam exam = ExamRepository.GetById(id);
+            ViewBag.CourseList = courseRepository.GetAll();
             return View("Edit", exam);
         }
         [HttpPost]

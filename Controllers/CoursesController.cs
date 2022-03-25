@@ -9,12 +9,12 @@ namespace ProjectItiTeam.Controllers
     public class CoursesController : Controller
     {
         ICourseRepository CourseRepository;
-        private readonly ILevelRepository repo;
+        private readonly ILevelRepository LevelRepository;
 
         public CoursesController(ICourseRepository courseRepository,ILevelRepository repo)
         {
             this.CourseRepository = courseRepository;
-            this.repo = repo;
+            this.LevelRepository = repo;
         }
         public IActionResult Index()
         {
@@ -25,6 +25,7 @@ namespace ProjectItiTeam.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.Levels = LevelRepository.GetAll();
             return View(new Course());
         }
 
@@ -42,6 +43,7 @@ namespace ProjectItiTeam.Controllers
         public IActionResult Edit(int id)
         {
             Course course = CourseRepository.GetById(id);
+            ViewBag.LevelList = LevelRepository.GetAll();
 
             return View("Edit", course);
         }
@@ -66,7 +68,7 @@ namespace ProjectItiTeam.Controllers
 
             model.courses = CourseRepository.GetById(id);
             model.coursesLi = CourseRepository.GetAll();
-            model.Level = repo.GetAll();
+            model.Level = LevelRepository.GetAll();
 
             return View(model);
         }
