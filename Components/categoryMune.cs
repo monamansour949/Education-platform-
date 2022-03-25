@@ -10,6 +10,5 @@ namespace ProjectItiTeam.Components
         {
             return View();
         }
-
     }
 }
