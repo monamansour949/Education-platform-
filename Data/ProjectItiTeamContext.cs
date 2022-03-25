@@ -15,5 +15,9 @@ namespace ProjectItiTeam.Data
         }
 
         public DbSet<ProjectItiTeam.Models.Course> Course { get; set; }
+
+        public DbSet<ProjectItiTeam.Models.Exam> Exam { get; set; }
+
+        public DbSet<ProjectItiTeam.Models.Level> Level { get; set; }
     }
 }

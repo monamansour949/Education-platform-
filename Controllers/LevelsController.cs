@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace ProjectItiTeam.Controllers
 {
-    public class LevelController : Controller
+    public class LevelsController : Controller
     {
         ILevelRepository levelRepository;
 
-        public LevelController(ILevelRepository levelRepository)
+        public LevelsController(ILevelRepository levelRepository)
         {
             this.levelRepository = levelRepository;
         }

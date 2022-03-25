@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace ProjectItiTeam.Controllers
 {
-    public class ExamController : Controller
+    public class ExamsController : Controller
     {
         IExamRepository ExamRepository;
 
-        public ExamController(IExamRepository examRepository)
+        public ExamsController(IExamRepository examRepository)
         {
             this.ExamRepository = examRepository;
         }

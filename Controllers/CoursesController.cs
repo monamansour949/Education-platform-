@@ -5,15 +5,14 @@ using System.Collections.Generic;
 
 namespace ProjectItiTeam.Controllers
 {
-    public class CourseController : Controller
+    public class CoursesController : Controller
     {
         ICourseRepository CourseRepository;
 
-        public CourseController(ICourseRepository courseRepository)
+        public CoursesController(ICourseRepository courseRepository)
         {
             this.CourseRepository = courseRepository;
         }
-
         public IActionResult Index()
         {
             List<Course> courses = CourseRepository.GetAll();
