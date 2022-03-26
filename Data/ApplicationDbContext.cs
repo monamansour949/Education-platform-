@@ -14,11 +14,24 @@ namespace ProjectItiTeam.Data
             : base(options)
         {
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        { 
+            base.OnModelCreating(builder);
+        }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
 
         public DbSet<Exam> Exams { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Level> levels { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<MCQ> MCQs { get; set; }
+        public DbSet<choice> Choices { get; set; }
+        public DbSet<TrueAndFalse> TrueAndFalses { get; set; }
+        public DbSet<Quiz> Quizzes  { get; set; }
+
+
+
+
     }
 }
