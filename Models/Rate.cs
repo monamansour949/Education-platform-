@@ -15,7 +15,6 @@ namespace ProjectItiTeam.Models
         public int Stars { get; set; }
         public DateTime Date { get; set; }
 
-
         [ForeignKey("Course")]
         public int Course_ID { get; set; }
         public int User_ID { get; set; }

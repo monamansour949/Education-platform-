@@ -85,6 +85,7 @@ namespace ProjectItiTeam
                    options.ClientId = "209335769669-srqi3f3kntddisdlfdq68p0ni3gqd4jf.apps.googleusercontent.com";
                    options.ClientSecret = "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";
                });
+          
         }
         // dotnet user-secrets set "1w93753039045-9bi5alng6f249p163k5vobgvi8q3t82s.apps.googleusercontent.com"
         // dotnet user-secrets set "Authentication:Google:ClientSecret" "<client-secret>"
