@@ -33,7 +33,7 @@ namespace ProjectItiTeam.Controllers
                 levelRepository.Insert(level);
                 return RedirectToAction("Index");
             }
-            return View("New",level);
+            return View("New",level); // Mahran: view name is create not new  Mahran
         }
 
         public IActionResult Edit(int id)

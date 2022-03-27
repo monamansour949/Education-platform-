@@ -38,7 +38,7 @@ namespace ProjectItiTeam.Controllers
             return View("Details", audio);
         }
         //New
-        public IActionResult New()
+        public IActionResult New() //creat not new to be standerd
         {
             return View("New",new Audio());
         }
@@ -58,7 +58,7 @@ namespace ProjectItiTeam.Controllers
         {
             Audio audio = AudioRepository.GetById(id);
             List<Level> levels = LevelRepository.GetAll();
-            ViewBag.lvl = levels.ToList();
+            ViewBag.lvl = levels.ToList();  // Mahran: levels here actuly list we didn't need to use ToList
             return View("Edit", audio);
         }
         [HttpPost]
@@ -71,7 +71,7 @@ namespace ProjectItiTeam.Controllers
                 return RedirectToAction("Index");
             }
             List<Level> levels = LevelRepository.GetAll();
-            ViewBag.lvl = levels.ToList();
+            ViewBag.lvl = levels.ToList(); // Mahran: levels here actuly list we didn't need to use ToList
             return View("Edit", audio);
         }
         //Delete

@@ -52,7 +52,7 @@ namespace ProjectItiTeam.Repository
             context.Audios.Remove(GetById(id));
             return context.SaveChanges();
         }
-        public List<Audio> GetByDeptId(int id)
+        public List<Audio> GetByDeptId(int id) // by level nor department
         {
             List<Audio> Crs = context.Audios.Where(c => c.Level_ID == id).ToList();
             return Crs;

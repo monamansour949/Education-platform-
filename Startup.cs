@@ -76,6 +76,11 @@ namespace ProjectItiTeam
             services.AddScoped<ILevelRepository, LevelRepository>();
             services.AddScoped<IExamRepository, ExamRepository>();
             services.AddScoped<IBAox,basketRepo>();
+
+            services.AddScoped<IQuestionRepoistory, QuestionRepoistory>();
+            services.AddScoped<IQuizRepository, QuizRepository>();
+            services.AddScoped<ITrueAndFalseRepository, TrueAndFalseRepository>();
+            services.AddScoped<IMCQRepository, MCQRepository>();
             //services.AddTransient<IEmailSender, EmailSender>();
             services.AddAuthentication();
         }
