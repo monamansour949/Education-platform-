@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProjectItiTeam.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         ICourseRepository CourseRepository;
@@ -34,7 +35,6 @@ namespace ProjectItiTeam.Controllers
             ViewBag.Levels = LevelRepository.GetAll();
             return View(new Course());
         }
-        [Authorize]
         [HttpPost]
         public async Task<ActionResult> Create(Course course)
         {

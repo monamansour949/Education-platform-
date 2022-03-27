@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectItiTeam.Migrations
 {
-    public partial class one : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -247,7 +247,7 @@ namespace ProjectItiTeam.Migrations
                         column: x => x.Level_Id,
                         principalTable: "levels",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -270,7 +270,7 @@ namespace ProjectItiTeam.Migrations
                         column: x => x.Level_Id,
                         principalTable: "levels",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -305,7 +305,8 @@ namespace ProjectItiTeam.Migrations
                     Stars = table.Column<int>(type: "int", maxLength: 5, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Course_ID = table.Column<int>(type: "int", nullable: false),
-                    User_ID = table.Column<int>(type: "int", nullable: false)
+                    User_ID = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -423,7 +424,7 @@ namespace ProjectItiTeam.Migrations
                         column: x => x.QuestionsId,
                         principalTable: "Question",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(

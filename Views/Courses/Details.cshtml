@@ -67,9 +67,9 @@
                 <h2 class="bg-dark text-light p-1 rounded box-shadow text-center"><a asp-action="Details" class="btn text-light " asp-route-Id="@item.Id">@item.Name</a></h2>
             }
         </div>
+        <img src="" id="img"/>
     </div>
 </div>
-<script src="~/lib/microsoft-signalr/signalr.min.js"></script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -77,9 +77,10 @@
     function hover(image) {
         if(image.getAttribute("data-color")=="0")
         {
-            image.src="~/PhotoUser/empty_star.png";
+            let a="PhotoUser/Filled_star.png";
+            console.log(a);
+            image.src=`${a}`;
         }
-       
     }
     function leave(image) {
         if(image.getAttribute("data-color")=="0")
@@ -93,11 +94,11 @@
         if(image.getAttribute("data-color")=="0")
         {
            
-            image.src= 'PhotoUser/Filled_star.png'
+            image.src= "PhotoUser/Filled_star.png"
             image.setAttribute("data-color","1");
         }else
         {
-            image.src='PhotoUser/empty_star.png''
+            image.src="PhotoUser/empty_star.png"
             image.setAttribute("data-color","0");
 
         }
