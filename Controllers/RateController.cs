@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using ProjectItiTeam.Hubs;
 using ProjectItiTeam.Models;
 using ProjectItiTeam.Repository;
 using System.Collections.Generic;
@@ -10,11 +12,13 @@ namespace ProjectItiTeam.Controllers
     {
         IRateRepository RateRepository;//=new RateRepository();
         ICourseRepository CourseRepository;//=new CourseRepository();
+        private readonly IHubContext<ProductHub> productHub;
 
-        public RateController(IRateRepository rateRepo,ICourseRepository courseRepo)
+        public RateController(IRateRepository rateRepo,ICourseRepository courseRepo, IHubContext<ProductHub> productHub)
         {
             RateRepository = rateRepo;
             CourseRepository = courseRepo;
+            this.productHub = productHub;
         }
 
         public IActionResult testGuid()
@@ -45,6 +49,8 @@ namespace ProjectItiTeam.Controllers
             }
             return View("New", rate);
         }
+
+
 
         //Edit
         public IActionResult Edit(int id)
