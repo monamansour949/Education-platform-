@@ -1,0 +1,36 @@
+﻿@model Audio
+
+@{
+    ViewData["Title"] = "Add a new Audio";
+}
+
+<div class="text-center">
+    <h1>Add a new Audio</h1>
+</div>
+
+<div class="text-center">
+    <form method="post">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+        <br />
+
+
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description"></textarea>
+        <span asp-validation-for="Description"></span>
+        <br />
+
+
+         <label asp-for="Level_ID" ></label>
+         <select asp-for="Level_ID" asp-items="ViewBag.Level_ID"></select>
+        <br />
+
+         <label asp-for="User_Id"></label>
+         <input asp-for="User_Id"/>
+         <span asp-validation-for="User_Id"></span>
+         <br />
+
+        <input type="submit" value="Add Audio" />
+    </form>
+</div>

@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace ProjectItiTeam.Controllers
 {
-    public class LevelController : Controller
+    public class LevelsController : Controller
     {
         ILevelRepository levelRepository;
 
-        public LevelController(ILevelRepository levelRepository)
+        public LevelsController(ILevelRepository levelRepository)
         {
             this.levelRepository = levelRepository;
         }
@@ -20,9 +20,13 @@ namespace ProjectItiTeam.Controllers
 
             return View(levels);
         }
-
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
         [HttpPost]
-        public IActionResult SaveNew(Level level)
+        public IActionResult Create(Level level)
         {
             if (level.Name !=null)
             {
@@ -40,7 +44,7 @@ namespace ProjectItiTeam.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveEdit([FromRoute] int id, Level newlevel)
+        public IActionResult Edit([FromRoute] int id, Level newlevel)
         {
             if (ModelState.IsValid == true)
             {
@@ -48,23 +52,19 @@ namespace ProjectItiTeam.Controllers
               levelRepository.Update(id, newlevel);
                 return RedirectToAction("Index");
             }
-
-
             return View("Edit", newlevel);
         }
-
-        public IActionResult Delete(int id)
+        [HttpGet]
+        public IActionResult Details(int id)
         {
            Level level = levelRepository.GetById(id);
-            return View("Delete", level);
+            return View(level);
         }
-        [HttpPost]
-        public IActionResult SaveDelete(int id)
+        [HttpGet]
+        public IActionResult Delete(int id)
         {
            levelRepository.Delete(id);
             return RedirectToAction("Index");
-
-
         }
     }
 }

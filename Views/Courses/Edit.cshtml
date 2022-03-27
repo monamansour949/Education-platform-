@@ -1,0 +1,61 @@
+﻿@model ProjectItiTeam.Models.Course
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Course</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+             <div>
+        <label for="Level_Id">Level</label>
+        <select class="form-control" name="Level_Id" id="Level_Id" >
+            @foreach (Level Levelitem in ViewBag.LevelList)
+            {
+                if (Model.Level_Id == Levelitem.Id)
+                {
+                    <option value="@Levelitem.Id" selected>@Levelitem.Name</option>
+                }else{
+                    <option value="@Levelitem.Id">@Levelitem.Name</option>
+                }
+           }
+        </select>
+    </div>
+           @* <div class="form-group">
+                <label asp-for="Level_Id" class="control-label"></label>
+                <select asp-for="Level_Id" class="form-control" asp-items="ViewBag.Level_Id"></select>
+                <span asp-validation-for="Level_Id" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User_Id" class="control-label"></label>
+                <input asp-for="User_Id" class="form-control" />
+                <span asp-validation-for="User_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
