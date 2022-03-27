@@ -18,7 +18,7 @@ namespace ProjectItiTeam.Models
         [ForeignKey("Course")]
         public int Course_ID { get; set; }
         public int User_ID { get; set; }
-
+        public string UserName { get; set; }
         public virtual Course Course { get; set; }
 
     }

@@ -19,6 +19,7 @@ using ProjectItiTeam.Models.Identity.Services;
 using ProjectItiTeam.Models.Identity;
 using ProjectItiTeam.Models.Identity.Repositery;
 using ProjectItiTeam.Repository;
+using ProjectItiTeam.Hubs;
 
 namespace ProjectItiTeam
 {
@@ -70,6 +71,7 @@ namespace ProjectItiTeam
                   options.IdleTimeout = TimeSpan.FromMinutes(10);
                   options.Cookie.HttpOnly = true;
               });
+            services.AddSignalR();
 
             services.AddScoped<IRepositery, RepositeryUser>();
             services.AddScoped<ICourseRepository, CourseRepository>();
@@ -90,7 +92,6 @@ namespace ProjectItiTeam
                    options.ClientId = "209335769669-srqi3f3kntddisdlfdq68p0ni3gqd4jf.apps.googleusercontent.com";
                    options.ClientSecret = "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";
                });
-          
         }
         // dotnet user-secrets set "1w93753039045-9bi5alng6f249p163k5vobgvi8q3t82s.apps.googleusercontent.com"
         // dotnet user-secrets set "Authentication:Google:ClientSecret" "<client-secret>"
@@ -124,6 +125,7 @@ namespace ProjectItiTeam
             app.UseEndpoints(endpoints =>
             {
                 // endpoints.MapHub("/NotificationHub");
+                endpoints.MapHub<ProductHub>("ProductHub");
                 endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",

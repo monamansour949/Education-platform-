@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectItiTeam.Models;
 using ProjectItiTeam.Models.Identity.Repositery;
 using ProjectItiTeam.Models.ViewModel;
@@ -33,7 +34,7 @@ namespace ProjectItiTeam.Controllers
             ViewBag.Levels = LevelRepository.GetAll();
             return View(new Course());
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> Create(Course course)
         {

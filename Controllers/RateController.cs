@@ -20,10 +20,8 @@ namespace ProjectItiTeam.Controllers
             CourseRepository = courseRepo;
             this.productHub = productHub;
         }
-
         public IActionResult testGuid()
         {
-
             ViewBag.id = RateRepository.id;
             return View();
         }
