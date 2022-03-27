@@ -10,13 +10,13 @@
 <h1 class="bg-primary m-2 p-1 text-white border rounded mt-3 px-4 ">Create New <span class="text-warning">Account...</span></h1>
    
 <div class="container-fluid border p-4 rounded box-shadow">
-    <div class="row">
+    <div class="row ">
          <div class="container-fluid row"  >
-        <div class="col-md-6 ">
-              <img src="~/PhotoUser/images (6).png" class="img-fluid " />
+        <div class="col-md-4 animate__animated animate__backInLeft ">
+              <img src="~/PhotoUser/regisre.png" class="img-fluid " />
         </div> 
         <div class="col-md-6 mt-5 text-center">
-            <h3 class="text-primary">New User</h3>
+            @*<h3 class="text-primary">New User</h3>*@
         </div>
 
     </div>
@@ -24,50 +24,50 @@
                <form class="m-5" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <div class="row m-1">
+                <div class="row m-2">
                     <div class="col-md-4">
                        <label asp-for="Input.Email"></label>
                     </div>
                     <div class="col-md-8">
-                        <input asp-for="Input.Email" class="form-control" />
+                        <input asp-for="Input.Email" class="form-control rounded-pill" />
                          <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="row m-1">
+                <div class="row m-2">
                     <div class="col-md-4">
                        <label asp-for="Input.Name"></label>
                     </div>
                     <div class="col-md-8">
-                        <input asp-for="Input.Name" class="form-control" />
+                        <input asp-for="Input.Name" class="form-control rounded-pill" />
                          <span asp-validation-for="Input.Name" class="text-danger"></span>
                     </div>
                 </div> 
-                <div class="row m-1">
+                <div class="row m-2">
                     <div class="col-md-4">
                        <label asp-for="Input.picture"></label>
                     </div>
                     <div class="col-md-8">
-                        <input type="file" asp-for="Input.picture" class="form-control" />
+                        <input type="file" asp-for="Input.picture" class="form-control rounded-pill" />
                          <span asp-validation-for="Input.picture" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="row m-1">
+                <div class="row m-2">
                     <div class="col-md-4">
                        <label asp-for="Input.City"></label>
                     </div>
                     <div class="col-md-8">
-                        <input  asp-for="Input.City" class="form-control" />
+                        <input  asp-for="Input.City" class="form-control rounded-pill" />
                          <span asp-validation-for="Input.City" class="text-danger"></span>
                     </div>
                 </div>
                 
             </div>
-                 <div class="row m-1">
+                 <div class="row m-2">
                       <div class="col-md-4">
                             <label asp-for="Input.Password"></label>
                        </div>
                        <div class="col-md-8">
-                           <input asp-for="Input.Password" class="form-control" />
+                           <input asp-for="Input.Password" class="form-control rounded-pill" />
                             <span asp-validation-for="Input.Password" class="text-danger"></span>
                        </div>
                   </div>
@@ -77,8 +77,10 @@
                             <label asp-for="Input.ConfirmPassword"></label>
                        </div>
                        <div class="col-md-8">
-                           <input asp-for="Input.ConfirmPassword" class="form-control" />
+                           <input asp-for="Input.ConfirmPassword" class="form-control rounded-pill" />
                              <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+
+                              <button type="submit" class="btn btn-outline-primary rounded-pill w-100 mt-5">Register</button>
                        </div>
                   </div>
                    @if (User.IsInRole(SD.Admin))
@@ -100,13 +102,15 @@
                     <input type="hidden" checked name="rdUserRole"  value="@SD.user"  class="custom-radio"/> 
                 }
               
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary w-100">Register</button>
-            </div>
+         
         </form>
         </div>
-        <div class="col-md-4">
+                 <div class="col-md-4">
              <div class="col">
+        <section>
+         
+        </section>
+       
         <section>
             <h4 class="text-warning">Another Service</h4>
             <hr />
