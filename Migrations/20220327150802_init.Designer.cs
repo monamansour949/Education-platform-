@@ -10,8 +10,8 @@ using ProjectItiTeam.Data;
 namespace ProjectItiTeam.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220326211935_test1")]
-    partial class test1
+    [Migration("20220327150802_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
