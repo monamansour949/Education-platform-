@@ -7,22 +7,28 @@
 
 }
 
+
 <h1 class="bg-primary m-2 p-1 text-white border rounded mt-3 px-4">Use a local account to  <span class="text-warning">log in..</span></h1>
 
 <div class="container-fluid border p-4 rounded box-shadow">
     <div class="row animate__animated animate__backInLeft">
         <div class="container-fluid row"  >
-                <div class="col-md-6">
-                      <img src="~/PhotoUser/login.png" class="img-fluid " />
+                <div class="col-md-4 ">
+                      <img src="~/PhotoUser/login_pdn4 (1).png" class="img-fluid" />
+                       
                 </div> 
-                <div class="col-md-6 mt-5 text-center">
-                    <h3 class="text-primary">User Account</h3>
-                </div>
+
+              <div class="col-md-6 mt-5 text-center">
+     
+        </div>
+
         </div>
      
      </div>
-        <div class="row">
-            <div class="col-md-8">
+
+        <div >
+            <div class="col-md-8 m-5 animate__animated animate__fadeInUp">
+                <h3 class="text-primary">User Account</h3>
                    <form id="account" method="post">
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
@@ -31,17 +37,19 @@
                      <label asp-for="Input.Email"></label>
                     </div>
                     <div class="col-md-8">
-                        <input asp-for="Input.Email" class="form-control" />
+                        <input asp-for="Input.Email" class="form-control rounded-pill" />
                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
                 </div>
+                <div class ="mt-1">
 
-                <div class="row">
+                </div>
+                <div class="row ">
                     <div class="col-md-4">
                          <label asp-for="Input.Password"></label>
                     </div>
                     <div class="col-md-8">
-                        <input asp-for="Input.Password" class="form-control" />
+                        <input asp-for="Input.Password" class="form-control rounded-pill" />
                          <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
                 </div>
@@ -54,27 +62,27 @@
                             <input asp-for="Input.RememberMe" />
                             @Html.DisplayNameFor(m => m.Input.RememberMe)
                         </label>
-                    </div>
+                          <button type="submit" class="btn btn-outline-warning rounded-pill w-100 ">Log in</button>
+                    </div> 
                 </div>
-              <div class="mt-4">
-                <button type="submit" class="btn btn-warning w-100">Log in</button>
-            </div>
+            
                
-                <div class="row m-1">
+                <div class="row mt-4">
                     <div class="col-md-4">
-                        <a id="forgot-password" class="btn btn-primary w-100" asp-page="./ForgotPassword">Forgot your password?</a>
+                        <a id="forgot-password" class="btn btn-outline-primary rounded-pill w-100" asp-page="./ForgotPassword">Forgot your password?</a>
                     </div>
                     <div class="col-md-4">
-                        <a asp-page="./Register" class="btn btn-info w-100" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        <a asp-page="./Register" class="btn btn-outline-info rounded-pill w-100" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                     </div>
                     <div class="col-md-4">
-                        <a id="resend-confirmation" class="btn btn-info w-100" asp-page="./ResendEmailConfirmation">Resend email</a>
+                        <a id="resend-confirmation" class="btn btn-outline-info rounded-pill w-100" asp-page="./ResendEmailConfirmation">Resend email</a>
                     </div>
                 </div>
             </form>
             </div>
-            <div class="col-md-4">
-                <div class="row">
+
+               <div class="col-md-4">
+             <div class="col">
     <div class="col-md-4">
         <section>
          
