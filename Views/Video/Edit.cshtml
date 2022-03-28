@@ -10,30 +10,30 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Update">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-success"></div>
             <input type="hidden" asp-for="ID" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <span asp-validation-for="Name" class="text-success"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <span asp-validation-for="Description" class="text-success"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Course_ID" class="control-label"></label>
                 <select asp-for="Course_ID" class="form-control" asp-items="ViewBag.Course_ID"></select>
-                <span asp-validation-for="Course_ID" class="text-danger"></span>
+                <span asp-validation-for="Course_ID" class="text-success"></span>
             </div>
             <div class="form-group">
                 <label asp-for="User_Id" class="control-label"></label>
                 <input asp-for="User_Id" class="form-control" />
-                <span asp-validation-for="User_Id" class="text-danger"></span>
+                <span asp-validation-for="User_Id" class="text-success"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </form>
     </div>

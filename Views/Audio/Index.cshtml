@@ -4,14 +4,23 @@
     ViewData["Title"] = "Audios";
 }
 
-<h1>Browse Audios</h1>
+<h1 style="color: green;">Playlist</h1>
 
-<p>
-    <a asp-action="New" >
-        Add Audio
-    </a>
-</p>
-
+<div class="row marginTop">
+    <div class="container-Audio">
+    <div class="row cant d-flex justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="p-3 card">
+    @foreach (var audio in Model)
+    {
+        @Html.Partial("_AudioSummary", audio)
+    }
+<button class="btn btn-success btn-block playlist text-uppercase"><i class="fa fa-shopping-cart"></i> My Playlist</button>
+</div>
+            </div>
+        </div>
+</div></div>
+@*
 <table class="table table-striped">
     <thead class="thead-dark">
         <tr>
@@ -54,15 +63,15 @@
                         @i <span class="sr-only">(current)</span> @* This highlights the current page in the video library *@ 
                     </a>
                 </li>
-            }
+            @*}
             else
             {
                 <li class="page-item">
                     <a class="page-link" asp-action="Index" asp-route-id="@i">
                         @i  @* Page number in the route *@
-                    </a>
+                    @*</a>
                 </li>
             }
         }
     </ul>
-</nav>
+</nav>*@

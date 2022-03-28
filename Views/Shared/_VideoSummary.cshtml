@@ -1,0 +1,23 @@
+﻿@model Video
+
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="card text-center" style="width: 20rem;margin-bottom:2rem">
+        <div class="ratio ratio-16x9">
+  <iframe class="embed-responsive-item" src="@Model.VideoUrl" allowfullscreen></iframe>
+        </div>
+@*           <video src="@Model.VideoUrl" autoplay loop alt="Video-Course"></video>
+*@        <div class="card-body" style="height:50%">
+            <div>
+                <h3 class="card-title">
+                    <a asp-controller="Video" asp-action="Details" asp-route-id="@Model.ID" style="text-decoration:none; color: green">@Model.Name</a>
+                 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                   {
+                      <a class="text-white float-right" asp-controller="Video" asp-action="Edit" asp-route-id="@Model.ID"><i class="bi bi-pencil-square"></i></a>
+                    }
+                </h3>
+               <a href="#" class="btn btn-success">Add to Dashboard</a>
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -14,6 +14,8 @@ namespace ProjectItiTeam.Models
         [StringLength(90)]
         public string Description { get; set; }
 
+        public string AudioUrl { get; set; }
+
         [ForeignKey("Level")]
         public int Level_ID { get; set; }
         public int User_Id { get; set; }
