@@ -56,8 +56,12 @@
                         </div>
                         <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
                        
-                        <button class="btn btn-primary" onclick="SendMessage()" id="btn_Like">Like</button>
-                        <button class="btn btn-danger" onclick="dislike()" id="btn_Dis_Like">DisLike</button>
+                        <button type="button" onclick="SendMessage()" id="btn_Like" class="btn btn-primary">
+                          Like <span id="spanLike" class="badge badge-light text-primary">@ViewBag.dataa.Stars</span>
+                        </button>
+                        <button type="button"  onclick="dislike()" id="btn_Dis_Like" class="btn btn-danger">
+                          DisLike <span id="spanDisLike" class="badge badge-light text-primary">@ViewBag.dataa.dislike</span>
+                        </button>
 
                 </div>
             </div>
@@ -80,9 +84,17 @@
     var hubConnection=
            new signalR.HubConnectionBuilder().withUrl("/Chat").build();
             //handle request come from server
-   hubConnection.on("Display",function(data){
-       
-   alert(data);
+   hubConnection.on("Display",function(idCourse,data,type){
+       if(@Model.courses.Id == idCourse)
+       {
+           if(type=="1")
+           {
+                 document.getElementById("spanLike").innerHTML=data;
+
+           }else{
+                document.getElementById("spanDisLike").innerHTML=data;
+           }
+       }
    });
      //Start
     hubConnection.start().then(function(){

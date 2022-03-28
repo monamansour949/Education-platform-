@@ -67,11 +67,11 @@ namespace ProjectItiTeam.Hubs
             var data = context.Rates.Include(x => x.Course).Where(x => x.Course_ID == course).FirstOrDefault();
             if (input =="1")
             {
-                Clients.All.SendAsync("Display", data.Stars);//notifuication "Push"
+                Clients.All.SendAsync("Display", data.Course_ID,data.Stars,"1");//notifuication "Push"
             }
             else
             {
-                Clients.All.SendAsync("Display", data.dislike);//notifuication "Push"
+                Clients.All.SendAsync("Display", data.Course_ID,data.dislike,"0");//notifuication "Push"
             }
         }
 
