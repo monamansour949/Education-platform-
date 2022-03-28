@@ -1,0 +1,7 @@
+﻿@model Audio
+
+
+ <div class="d-flex justify-content-between align-items-center p-3 music">
+    <div class="d-flex flex-row align-items-center"> <a asp-controller="Audio" asp-action="Details" asp-route-id="@Model.ID" style="text-decoration:none; color: green"> <i class="fa fa-music color"></i><small class="ml-2"> @Model.Name</small> </a> </div><i class="fa fa-check color"></i>
+ </div>
+

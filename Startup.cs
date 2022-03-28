@@ -75,7 +75,9 @@ namespace ProjectItiTeam
 
             services.AddScoped<IRepositery, RepositeryUser>();
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IVideoRepository, VideoRepository>();
             services.AddScoped<ILevelRepository, LevelRepository>();
+            services.AddScoped<IAudioRepository, AudioRepository>();
             services.AddScoped<IExamRepository, ExamRepository>();
             services.AddScoped<IBAox,basketRepo>();
 

@@ -195,6 +195,7 @@ namespace ProjectItiTeam.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(90)", maxLength: 90, nullable: true),
+                    AudioUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Level_ID = table.Column<int>(type: "int", nullable: false),
                     User_Id = table.Column<int>(type: "int", nullable: false)
                 },
@@ -327,6 +328,7 @@ namespace ProjectItiTeam.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(90)", maxLength: 90, nullable: true),
+                    VideoUrl = table.Column<string>(type: "nvarchar(90)", maxLength: 90, nullable: true),
                     Course_ID = table.Column<int>(type: "int", nullable: false),
                     User_Id = table.Column<int>(type: "int", nullable: false)
                 },
@@ -394,7 +396,7 @@ namespace ProjectItiTeam.Migrations
                         column: x => x.QuestionsId,
                         principalTable: "Question",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_QuestionQuiz_Quizzes_QuizzesId",
                         column: x => x.QuizzesId,
@@ -418,7 +420,7 @@ namespace ProjectItiTeam.Migrations
                         column: x => x.ExamsId,
                         principalTable: "Exams",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_ExamQuestion_Question_QuestionsId",
                         column: x => x.QuestionsId,

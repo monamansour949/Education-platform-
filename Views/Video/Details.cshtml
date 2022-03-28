@@ -1,0 +1,31 @@
+﻿@model Video
+
+<div class="container marginTop">
+    <div class="row">
+        <div class="card" style="padding:1rem;">
+            <div class="text-center view overlay hm-white-slight">
+                <div class="videoplayer" id="myCustomPlayer">
+   <div class="ratio ratio-16x9 bg-dark">
+@*      <video class="video" src="@Model.VideoUrl"></video>
+*@            <iframe class="embed-responsive-item video" src="@Model.VideoUrl"  allowfullscreen></iframe>
+
+            </div>
+            <div class="card-block">
+                <!--Title-->
+                <h4 class="card-title" style="color:green">@Model.Name</h4>
+                <!--Text-->
+                <p class="card-text">@Model.Description.</p>
+                <p class="btn btn-group pull-right">
+                    
+                    <div class="btn-group ">
+                        <a class="btn btn-success" asp-controller="Video" asp-action="Index">Show all Videos</a>
+                    </div>
+                   <div class="btn-group ">
+                        <a class="btn btn-default btn-outline-success" style="background-color: white; color: green;" asp-controller="Video" asp-action="Index">Add To Dashboard</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
