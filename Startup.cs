@@ -84,6 +84,7 @@ namespace ProjectItiTeam
             services.AddScoped<IQuizRepository, QuizRepository>();
             services.AddScoped<ITrueAndFalseRepository, TrueAndFalseRepository>();
             services.AddScoped<IMCQRepository, MCQRepository>();
+            services.AddScoped<IRateRepository, RateRepository>();
             //services.AddTransient<IEmailSender, EmailSender>();
             services.AddAuthentication();
 
@@ -121,6 +122,7 @@ namespace ProjectItiTeam
             {
                 // endpoints.MapHub("/NotificationHub");
                 endpoints.MapHub<ProductHub>("ProductHub");
+                endpoints.MapHub<ChatHub>("Chat");
                 endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",

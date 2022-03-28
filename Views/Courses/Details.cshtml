@@ -54,12 +54,14 @@
                             <img src="~/PhotoUser/empty_star.png" id="img1" onclick="chageback(this)" data-color="0" onmouseover="hover(this)" onmouseleave="leave(this)" alt="" srcset="">
                             <img src="~/PhotoUser/empty_star.png" id="img1" onclick="chageback(this)" data-color="0" onmouseover="hover(this)" onmouseleave="leave(this)" alt="" srcset="">
                         </div>
+                        <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
                        
-                                  
-
-                        <button class="btn btn-primary" onclick="SendMessage()" id="btn_Like">Like</button>
-                        <button class="btn btn-danger" onclick="dislike()" id="btn_Dis_Like">DisLike</button>
-
+                        <button type="button" onclick="SendMessage()" id="btn_Like" class="btn btn-primary">
+                          Like <span id="spanLike" class="badge badge-light text-primary">@ViewBag.dataa.Stars</span>
+                        </button>
+                        <button type="button"  onclick="dislike()" id="btn_Dis_Like" class="btn btn-danger">
+                          DisLike <span id="spanDisLike" class="badge badge-light text-primary">@ViewBag.dataa.dislike</span>
+                        </button>
                 </div>
             </div>
         </div>
@@ -74,31 +76,36 @@
         </div>
     </div>
 </div>
-
-<script src="~/lib/microsoft-signalr/signalr.min.js"></script>
-
-<h1>ChatRoom</h1>
-
-Message:<input type="text" name="msgText" id="msgText" class="form-control" />
-<br/>
-<input type="button" onclick="SendMessage()" value="Send" class="btn btn-success" />
-<br/>
-<ul id="Msgs">
-    
-</ul>
- 
   
 <script>
 
     //Hub 
     var hubConnection=
-           new signalR.HubConnectionBuilder().withUrl("/ProductHub").build();
-   
+           new signalR.HubConnectionBuilder().withUrl("/Chat").build();
+            //handle request come from server
+   hubConnection.on("Display",function(idCourse,data,type){
+       if(@Model.courses.Id == idCourse)
+       {
+           if(type=="1")
+           {
+                 document.getElementById("spanLike").innerHTML=data;
+
+           }else{
+                document.getElementById("spanDisLike").innerHTML=data;
+           }
+       }
+   });
      //Start
     hubConnection.start().then(function(){
         console.log("Connect Success");
     });
     //send data to hub server
-   
+    function SendMessage(){
+         hubConnection.invoke("SendMEssageFromClient","1","@(User.Identity.Name)","@(Model.courses.Id)");
+    }
+    function dislike()
+    {
+         hubConnection.invoke("SendMEssageFromClient","0","@(User.Identity.Name)","@(Model.courses.Id)");
+    }
 </script>
 

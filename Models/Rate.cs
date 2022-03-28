@@ -6,6 +6,7 @@ namespace ProjectItiTeam.Models
 {
     public class Rate
     {
+        
         [Key]
         public int ID { get; set; }
 

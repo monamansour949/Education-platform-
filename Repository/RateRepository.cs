@@ -56,5 +56,9 @@ namespace ProjectItiTeam.Repository
             List<Rate> rate = context.Rates.Where(r => r.Course_ID == id).ToList();
             return rate;
         }
+        public Rate GetByIdCourse(int courseID)
+        {
+         return context.Rates.Include(x => x.Course).Where(x => x.Course_ID == courseID).FirstOrDefault();
+        }
     }
 }
