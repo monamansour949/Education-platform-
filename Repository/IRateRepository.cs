@@ -11,6 +11,7 @@ namespace ProjectItiTeam.Repository
         List<Rate> GetAll();
         List<Rate> GetByCourseId(int id);
         Rate GetById(int id);
+        Rate GetByIdCourse(int courseID);
         int Insert(Rate rate);
         int update(int id, Rate rate);
     }

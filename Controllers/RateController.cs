@@ -12,13 +12,11 @@ namespace ProjectItiTeam.Controllers
     {
         IRateRepository RateRepository;//=new RateRepository();
         ICourseRepository CourseRepository;//=new CourseRepository();
-        private readonly IHubContext<ProductHub> productHub;
 
-        public RateController(IRateRepository rateRepo,ICourseRepository courseRepo, IHubContext<ProductHub> productHub)
+        public RateController(IRateRepository rateRepo,ICourseRepository courseRepo)
         {
             RateRepository = rateRepo;
             CourseRepository = courseRepo;
-            this.productHub = productHub;
         }
         public IActionResult testGuid()
         {
