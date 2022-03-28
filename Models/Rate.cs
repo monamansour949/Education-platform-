@@ -13,6 +13,7 @@ namespace ProjectItiTeam.Models
         [MinLength(1)]
         [MaxLength(5)]
         public int Stars { get; set; }
+        public int dislike { get; set; }
         public DateTime Date { get; set; }
 
         [ForeignKey("Course")]
