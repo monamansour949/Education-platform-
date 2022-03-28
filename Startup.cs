@@ -84,6 +84,7 @@ namespace ProjectItiTeam
             services.AddScoped<IQuizRepository, QuizRepository>();
             services.AddScoped<ITrueAndFalseRepository, TrueAndFalseRepository>();
             services.AddScoped<IMCQRepository, MCQRepository>();
+            services.AddScoped<IRateRepository, RateRepository>();
             //services.AddTransient<IEmailSender, EmailSender>();
             services.AddAuthentication();
 
