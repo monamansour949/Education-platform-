@@ -78,12 +78,21 @@ namespace ProjectItiTeam.Controllers
         public IActionResult Details(int id)
         {
             dataTab_detVM model = new dataTab_detVM();
-
             model.courses = CourseRepository.GetById(id);
             model.coursesLi = CourseRepository.GetAll();
             model.Level = LevelRepository.GetAll();
-            var data = rateRepo.GetByIdCourse(id);
-            ViewBag.dataa = data;
+            Rate data = rateRepo.GetByIdCourse(id);
+            if (data == null)
+            {
+                Rate rate = new Rate();
+                rate.Stars = 0;
+                rate.dislike = 0;
+                ViewBag.dataa = rate;
+            }
+            else
+            {
+                ViewBag.dataa = data;
+            }
             return View(model);
         }
         [HttpGet]

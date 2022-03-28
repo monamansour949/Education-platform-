@@ -57,10 +57,13 @@
                         <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
                        
                         <button type="button" onclick="SendMessage()" id="btn_Like" class="btn btn-primary">
-                          Like <span id="spanLike" class="badge badge-light text-primary">@ViewBag.dataa.Stars</span>
+                          <i class="fa fa-thumbs-up"></i> <span id="spanLike" class="badge badge-light text-primary">@ViewBag.dataa.Stars</span>
                         </button>
                         <button type="button"  onclick="dislike()" id="btn_Dis_Like" class="btn btn-danger">
-                          DisLike <span id="spanDisLike" class="badge badge-light text-primary">@ViewBag.dataa.dislike</span>
+                          <i class="fa fa-heart"></i> <span id="spanDisLike" class="badge badge-light text-primary">@ViewBag.dataa.dislike</span>
+                        </button>
+                        <button type="button"  onclick="Addfav()" id="btn_Dis_Like" class="btn btn-success">
+                          Add favourite <span id="spanDisLike" class="badge badge-light text-primary"><i class="fa fa-star"></i></span>
                         </button>
                 </div>
             </div>
@@ -76,6 +79,7 @@
         </div>
     </div>
 </div>
+
   
 <script>
 
@@ -95,6 +99,21 @@
            }
        }
    });
+
+   //add favourit
+         hubConnection.on("Display_data",function(user){
+             let user="@(User.Identity.Name)";
+       if(user == user)
+       {
+             Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'success Add Like',
+                        showConfirmButton: false,
+                        timer: 1000
+                        });
+       }
+   });
      //Start
     hubConnection.start().then(function(){
         console.log("Connect Success");
@@ -106,6 +125,10 @@
     function dislike()
     {
          hubConnection.invoke("SendMEssageFromClient","0","@(User.Identity.Name)","@(Model.courses.Id)");
+    }
+    function Addfav()
+    {
+         hubConnection.invoke("SendMEssageAddFav","@(User.Identity.Name)","@(Model.courses.Id)");
     }
 </script>
 

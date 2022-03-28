@@ -13,7 +13,7 @@ namespace ProjectItiTeam.Models.ViewModel
         public virtual ApplicationUser ApplicationUsers { get; set; }
         public int Course { get; set; }
         [NotMapped]
-        [ForeignKey("MenuItemID")]
+        [ForeignKey("Course")]
         public virtual Course Courses { get; set; }
         public DateTime Date { get; set; }
     }

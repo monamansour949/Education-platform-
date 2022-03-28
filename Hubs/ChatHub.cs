@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectItiTeam.Data;
 using ProjectItiTeam.Models;
+using ProjectItiTeam.Models.ViewModel;
 using ProjectItiTeam.Repository;
 using System;
 using System.Collections.Generic;
@@ -75,5 +76,29 @@ namespace ProjectItiTeam.Hubs
             }
         }
 
+
+
+        public void SendMEssageAddFav(string name , string CourseID)
+        {
+            int id_course = int.Parse(CourseID);
+            var data = context.Tables.FirstOrDefault(x => x.ApplicationUserID == name && x.Course == id_course);
+            if (data == null)
+            {
+                Table model = new Table()
+                {
+                    Course = id_course,
+                    ApplicationUserID = name,
+                    Date = DateTime.Now
+                };
+                context.Tables.Add(model);
+                context.SaveChanges();
+                Clients.All.SendAsync("Display_data", name);//notifuication "Push"
+            }
+            else
+            {
+                Clients.All.SendAsync("Display_data","1");//notifuication "Push"
+            }
+
+        }
     }
 }

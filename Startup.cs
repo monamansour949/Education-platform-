@@ -87,7 +87,6 @@ namespace ProjectItiTeam
             services.AddScoped<IRateRepository, RateRepository>();
             //services.AddTransient<IEmailSender, EmailSender>();
             services.AddAuthentication();
-
             services.AddAuthentication()
                 .AddGoogle(options =>
                {
