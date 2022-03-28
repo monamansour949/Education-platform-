@@ -54,6 +54,11 @@
                             <img src="~/PhotoUser/empty_star.png" id="img1" onclick="chageback(this)" data-color="0" onmouseover="hover(this)" onmouseleave="leave(this)" alt="" srcset="">
                             <img src="~/PhotoUser/empty_star.png" id="img1" onclick="chageback(this)" data-color="0" onmouseover="hover(this)" onmouseleave="leave(this)" alt="" srcset="">
                         </div>
+                       
+                                  
+
+                        <button class="btn btn-primary" onclick="SendMessage()" id="btn_Like">Like</button>
+                        <button class="btn btn-danger" onclick="dislike()" id="btn_Dis_Like">DisLike</button>
 
                 </div>
             </div>
@@ -67,44 +72,33 @@
                 <h2 class="bg-dark text-light p-1 rounded box-shadow text-center"><a asp-action="Details" class="btn text-light " asp-route-Id="@item.Id">@item.Name</a></h2>
             }
         </div>
-        <img src="" id="img"/>
     </div>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-     <script>
-    function hover(image) {
-        if(image.getAttribute("data-color")=="0")
-        {
-            let a="PhotoUser/Filled_star.png";
-            console.log(a);
-            image.src=`${a}`;
-        }
-    }
-    function leave(image) {
-        if(image.getAttribute("data-color")=="0")
-        {
-            image.src="@{}";
-        }
-       
-    }
-    let ch;
-    function chageback(image) {
-        if(image.getAttribute("data-color")=="0")
-        {
-           
-            image.src= "PhotoUser/Filled_star.png"
-            image.setAttribute("data-color","1");
-        }else
-        {
-            image.src="PhotoUser/empty_star.png"
-            image.setAttribute("data-color","0");
+<script src="~/lib/microsoft-signalr/signalr.min.js"></script>
 
-        }
+<h1>ChatRoom</h1>
 
-    }
+Message:<input type="text" name="msgText" id="msgText" class="form-control" />
+<br/>
+<input type="button" onclick="SendMessage()" value="Send" class="btn btn-success" />
+<br/>
+<ul id="Msgs">
+    
+</ul>
+ 
+  
+<script>
 
-    </script>
-}
+    //Hub 
+    var hubConnection=
+           new signalR.HubConnectionBuilder().withUrl("/ProductHub").build();
+   
+     //Start
+    hubConnection.start().then(function(){
+        console.log("Connect Success");
+    });
+    //send data to hub server
+   
+</script>
 
