@@ -120,8 +120,7 @@ namespace ProjectItiTeam
             app.UseEndpoints(endpoints =>
             {
                 // endpoints.MapHub("/NotificationHub");
-                endpoints.MapHub<ProductHub>("ProductHub"); 
-                endpoints.MapHub<AddFavouitHub>("AddFavouitHub"); 
+                endpoints.MapHub<ProductHub>("ProductHub");
                 endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
