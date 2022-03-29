@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -26,19 +28,21 @@ namespace ProjectItiTeam.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager, IWebHostEnvironment WebHostEnvironment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
             this.roleManager = roleManager;
+            webHostEnvironment = WebHostEnvironment;
         }
         [BindProperty]
         public InputModel Input { get; set; }
@@ -92,7 +96,20 @@ namespace ProjectItiTeam.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+                string imagesPAth = @"\PhotoUser\default.png";
+                var files = HttpContext.Request.Form.Files;
+                if (files.Count() > 0)
+                {
+                    Guid d = Guid.NewGuid();
+
+                    string host = webHostEnvironment.WebRootPath;
+                    string ImageName = DateTime.Now.ToFileTime().ToString() + Path.GetExtension(files[0].FileName);
+                    FileStream fileStream = new FileStream(Path.Combine(host, "PhotoUser", d + ImageName), FileMode.Create);
+                    files[0].CopyTo(fileStream);
+
+                    imagesPAth = @"\PhotoUser\" + d + ImageName;
+                }
+                    var user = new ApplicationUser
                 { 
                     UserName = Input.Email,
                     Email = Input.Email ,
@@ -100,8 +117,8 @@ namespace ProjectItiTeam.Areas.Identity.Pages.Account
                     PhoneNumber=Input.PhoneNumber,
                     City=Input.City,
                     address=Input.address,
-                    picture=Input.picture,
-                    Isactive=Input.Isactive,
+                    picture=imagesPAth,
+                    Isactive =Input.Isactive,
                     statue=Input.statue
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);

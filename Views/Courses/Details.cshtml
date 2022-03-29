@@ -49,22 +49,19 @@
                     </div>
                 </form>
                 <div>
-                      <div class="container">
-                            <img src="~/PhotoUser/empty_star.png" id="img1" onclick="chageback(this)" data-color="0" onmouseover="hover(this)" onmouseleave="leave(this)" alt="" srcset="">
-                            <img src="~/PhotoUser/empty_star.png" id="img1" onclick="chageback(this)" data-color="0" onmouseover="hover(this)" onmouseleave="leave(this)" alt="" srcset="">
-                            <img src="~/PhotoUser/empty_star.png" id="img1" onclick="chageback(this)" data-color="0" onmouseover="hover(this)" onmouseleave="leave(this)" alt="" srcset="">
-                        </div>
-                        <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
+                         <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
                        
+                      <div class="container mt-4 text-right">
                         <button type="button" onclick="SendMessage()" id="btn_Like" class="btn btn-primary">
-                          <i class="fa fa-thumbs-up"></i> <span id="spanLike" class="badge badge-light text-primary">@ViewBag.dataa.Stars</span>
+                         Like <i class="fa fa-thumbs-up"></i> <span id="spanLike" class="badge badge-light text-primary">@ViewBag.dataa.Stars</span>
                         </button>
                         <button type="button"  onclick="dislike()" id="btn_Dis_Like" class="btn btn-danger">
-                          <i class="fa fa-heart"></i> <span id="spanDisLike" class="badge badge-light text-primary">@ViewBag.dataa.dislike</span>
+                        Love  <i class="fa fa-heart"></i> <span id="spanDisLike" class="badge badge-light text-primary">@ViewBag.dataa.dislike</span>
                         </button>
                         <button type="button"  onclick="Addfav()" id="btn_Dis_Like" class="btn btn-success">
                           Add favourite <span id="spanDisLike" class="badge badge-light text-primary"><i class="fa fa-star"></i></span>
                         </button>
+                      </div>
                 </div>
             </div>
         </div>
@@ -74,7 +71,7 @@
              </div>
              @foreach (var item in Model.coursesLi.Take(10))
             {
-                <h2 class="bg-dark text-light p-1 rounded box-shadow text-center"><a asp-action="Details" class="btn text-light " asp-route-Id="@item.Id">@item.Name</a></h2>
+                <h2 class="bg-primary text-light p-1 rounded box-shadow text-center"><a asp-action="Details" class="btn text-light " asp-route-Id="@item.Id">@item.Name</a></h2>
             }
         </div>
     </div>
@@ -101,17 +98,13 @@
    });
 
    //add favourit
-         hubConnection.on("Display_data",function(user){
+         hubConnection.on("Display_data",function(userr,data){
              let user="@(User.Identity.Name)";
-       if(user == user)
+
+       if(user === userr)
        {
-             Swal.fire({
-                        position: 'top-center',
-                        icon: 'success',
-                        title: 'success Add Like',
-                        showConfirmButton: false,
-                        timer: 1000
-                        });
+           alert(data);
+             
        }
    });
      //Start

@@ -92,11 +92,12 @@ namespace ProjectItiTeam.Hubs
                 };
                 context.Tables.Add(model);
                 context.SaveChanges();
-                Clients.All.SendAsync("Display_data", name);//notifuication "Push"
+                Clients.All.SendAsync("Display_data", name,"success add data");//notifuication "Push"
             }
             else
             {
-                Clients.All.SendAsync("Display_data","1");//notifuication "Push"
+                string datasend = "sorry this course exist";
+                Clients.All.SendAsync("Display_data",name, datasend);//notifuication "Push"
             }
 
         }

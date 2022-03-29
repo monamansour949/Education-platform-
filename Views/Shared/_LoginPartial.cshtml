@@ -13,6 +13,7 @@
             <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
         </form>
     </li>
+      @await Component.InvokeAsync("categoryMune");
         @if (User.IsInRole(SD.Admin))
         {
          <li class="nav-item">
