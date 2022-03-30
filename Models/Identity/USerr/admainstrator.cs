@@ -40,13 +40,13 @@ namespace ProjectItiTeam.Models.Identity.USerr
 
             _userManager.CreateAsync(new ApplicationUser
             {
-                UserName = "bisho@gmail.com",
+                UserName = "bob@gmail.com",
                 Email = "bob@gmail.com",
                 EmailConfirmed = true,
                 Name = "beshoy"
-            }, "AA@aa123").GetAwaiter().GetResult();
+            }, "OPOP@OP123").GetAwaiter().GetResult();
 
-            ApplicationUser user = _context.ApplicationUsers.Where(u => u.Email == "bisho@gmail.com").FirstOrDefault();
+            ApplicationUser user = _context.ApplicationUsers.Where(u => u.Email == "bob@gmail.com").FirstOrDefault();
             _userManager.AddToRoleAsync(user, SD.Admin).GetAwaiter().GetResult();
         }
     }
