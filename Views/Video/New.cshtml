@@ -13,12 +13,12 @@
 <div class="row">
     <div class="col-md-8 offset-2">
         <p>
-            <h4>Create a new Video</h4>
+            <h4 class="text-success box-shadow p-1 rounded ">Create a new Video</h4>
         </p>
 
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action="Create">
+                <form asp-action="SaveNew" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="row">
@@ -31,10 +31,9 @@
                             </div>
                         
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Course_ID" class="control-label"></label>
-                                <select asp-for="Course_ID" class="form-control" asp-items="ViewBag.Cinemas"></select>
-                                <span asp-validation-for="Course_ID" class="text-success"></span>
+                           <div class="form-group">
+                                <label asp-for="Course.Name" class="control-label"></label>
+                                <select asp-for="Course_ID" class ="form-control" asp-items="ViewBag.Course_ID"></select>
                             </div>
                             
                         </div>
@@ -62,6 +61,11 @@
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-outline-success float-right" />
                         <a class="btn btn-outline-success" asp-action="Index">Show All</a>
+                    </div>
+                     <div class="form-group">
+                        <label asp-for="pathViedoes" class="control-label"></label>
+                        <input type="file" asp-for="pathViedoes" class="form-control" />
+                        <span asp-validation-for="pathViedoes" class="text-danger"></span>
                     </div>
                 </form>
             </div>

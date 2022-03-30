@@ -23,6 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\PathAudio\" />
+    <Folder Include="wwwroot\PathVideos\" />
     <Folder Include="wwwroot\photo\" />
   </ItemGroup>
 

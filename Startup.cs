@@ -20,6 +20,7 @@ using ProjectItiTeam.Models.Identity;
 using ProjectItiTeam.Models.Identity.Repositery;
 using ProjectItiTeam.Repository;
 using ProjectItiTeam.Hubs;
+using ProjectItiTeam.Models.Identity.USerr;
 
 namespace ProjectItiTeam
 {
@@ -79,6 +80,7 @@ namespace ProjectItiTeam
             services.AddScoped<IAudioRepository, AudioRepository>();
             services.AddScoped<IExamRepository, ExamRepository>();
             services.AddScoped<IBAox,basketRepo>();
+            services.AddScoped<Iadmainstrator, admainstrator>();
 
             services.AddScoped<IQuestionRepoistory, QuestionRepoistory>();
             services.AddScoped<IQuizRepository, QuizRepository>();
@@ -95,7 +97,7 @@ namespace ProjectItiTeam
                });
             services.AddSignalR();
         }
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Iadmainstrator dbInt)
         {
             if (env.IsDevelopment())
             {
@@ -113,6 +115,7 @@ namespace ProjectItiTeam
 
             app.UseRouting();
             // StripeConfiguration.ApiKey=Configuration.GetSection("Stripe")["Secretkey"];
+            dbInt.Inilations();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSession();

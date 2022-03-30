@@ -27,9 +27,9 @@
         color: wheat;
     }
 </style>
-
+<br />
 <div class="m-3">
-      <a class="button1 " asp-action="Create">Create New</a>
+      <a class="btn p-1 text-primary border rounded" asp-action="Create">Create New</a>
 </div>
 @if(Model.Count()==0){
 <div class="alert alert-info">Sorry , No Exist Account .......</div>
@@ -38,7 +38,7 @@
 }else{
 
 
-<h1 class="data">All Data Level Course</h1>
+<h1 class="text-success p-1 box-shadow text-center">All Data Level Course</h1>
 
 
 <div class="container">

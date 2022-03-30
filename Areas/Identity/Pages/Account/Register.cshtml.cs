@@ -124,12 +124,7 @@ namespace ProjectItiTeam.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    if (!await roleManager.RoleExistsAsync(SD.Admin))
-                    {
-                        await roleManager.CreateAsync(new IdentityRole(SD.Admin));
-                        await roleManager.CreateAsync(new IdentityRole(SD.Manager));
-                        await roleManager.CreateAsync(new IdentityRole(SD.user));
-                    }
+                   
 
                     string role = Request.Form["rdUserRole"].ToString();
                     if (role == SD.Admin)

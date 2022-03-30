@@ -6,12 +6,13 @@
   <iframe class="embed-responsive-item" src="@Model.VideoUrl" allowfullscreen></iframe>
         </div>
 @*           <video src="@Model.VideoUrl" autoplay loop alt="Video-Course"></video>
-*@        <div class="card-body" style="height:50%">
+*@        <div class="" style=" ">
             <div>
                 <h3 class="card-title">
                     <a asp-controller="Video" asp-action="Details" asp-route-id="@Model.ID" style="text-decoration:none; color: green">@Model.Name</a>
                  @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                    {
+                      
                       <a class="text-white float-right" asp-controller="Video" asp-action="Edit" asp-route-id="@Model.ID"><i class="bi bi-pencil-square"></i></a>
                     }
                 </h3>
