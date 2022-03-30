@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<ProjectItiTeam.Models.Course>
 
+
 @{
-    ViewData["Title"] = "Index";
+    Layout = "_CourseLayout";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -43,13 +40,13 @@
                 @Html.DisplayFor(modelItem => item.Level.Name)
             </td>
             <td>
-                <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.Id">Edit
+                <a asp-action="Edit" class="btn btn-outline-success rounded-pill" asp-route-id="@item.Id">Edit
                     <i class="fa fa-edit"></i>
                 </a> |
-                <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Id">Details
+                <a asp-action="Details" class="btn btn-outline-primary rounded-pill" asp-route-id="@item.Id">Details
                     <i class="fa fa-info"></i>
                 </a> |
-                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete
+                <a asp-action="Delete" class="btn btn-outline-danger rounded-pill" asp-route-id="@item.Id">Delete
                     <i class="fa fa-trash"></i>
                 </a>
             </td>
@@ -57,3 +54,5 @@
 }
     </tbody>
 </table>
+
+  <a asp-action="Create"  class="btn btn-outline-light rounded-pill ">Create </a>
