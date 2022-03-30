@@ -88,7 +88,7 @@
 @*    comments part
 *@  
 <ul id="newComment">
-
+    hhhhhhhh
 </ul>
 Comment:<input type="text" name="comment" id="comment" class="form-control" />
 <br/>
@@ -101,7 +101,8 @@ Comment:<input type="text" name="comment" id="comment" class="form-control" />
        // var  CommentText = document.getElementById("comment").value;
         CommentHubConnection.on("NewComment",function (UserName,  CommentText, CourseId )
         {
-            if(@Model.courses.Id ===CourseId)
+
+            if(@Model.courses.Id == CourseId)
             {
                 document.getElementById("newComment").innerHTML+=
                 "<li>"+UserName +":" +CommentText+"</li>";
