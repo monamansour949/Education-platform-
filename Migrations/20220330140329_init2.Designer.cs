@@ -10,8 +10,8 @@ using ProjectItiTeam.Data;
 namespace ProjectItiTeam.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220329224627_test10")]
-    partial class test10
+    [Migration("20220330140329_init2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -287,13 +287,11 @@ namespace ProjectItiTeam.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("comments");
                 });
@@ -307,6 +305,9 @@ namespace ProjectItiTeam.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Level_Id")
                         .HasColumnType("int");
@@ -472,6 +473,12 @@ namespace ProjectItiTeam.Migrations
                     b.Property<string>("VideoUrl")
                         .HasMaxLength(90)
                         .HasColumnType("nvarchar(90)");
+
+                    b.Property<string>("pathViedoes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("username")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -672,13 +679,7 @@ namespace ProjectItiTeam.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectItiTeam.Models.Identity.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
                     b.Navigation("Course");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ProjectItiTeam.Models.Course", b =>

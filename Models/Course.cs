@@ -12,6 +12,7 @@ namespace ProjectItiTeam.Models
         public string Name { get; set; }
         [ForeignKey("Level")]
         public int Level_Id { get; set; }
+        public string  Image { get; set; }
         public DateTime Date { get; set; }
         public string User_Id { get; set; }
         public virtual Level Level { get; set; }
