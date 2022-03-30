@@ -7,83 +7,132 @@
  Layout = "~/Views/Shared/_Layout Admain.cshtml";
 }
 
-<h1 class="bg-primary m-2 p-1 text-white border rounded mt-3 px-4 ">Create New <span class="text-warning">Account...</span></h1>
-   
-<div class="container-fluid border p-4 rounded box-shadow">
-    <div class="row ">
-         <div class="container-fluid row"  >
-        <div class="col-md-4 animate__animated animate__backInLeft ">
-              <img src="~/PhotoUser/regisre.png" class="img-fluid " />
-        </div> 
-        <div class="col-md-6 mt-5 text-center">
-            @*<h3 class="text-primary">New User</h3>*@
+
+ @*hewwwwwwww
+
+      NEW DESIGN
+
+        *@
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="~/css/style.css">
+
+  
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mt-5">
+          <img src="~/images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
         </div>
-
-    </div>
-        <div class="col-md-8 animate__animated animate__fadeInUp">
-               <form class="m-5" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <div class="row m-2">
-                    <div class="col-md-4">
-                       <label asp-for="Input.Email"></label>
-                    </div>
-                    <div class="col-md-8">
-                        <input asp-for="Input.Email" class="form-control rounded-pill" />
-                         <span asp-validation-for="Input.Email" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row m-2">
-                    <div class="col-md-4">
-                       <label asp-for="Input.Name"></label>
-                    </div>
-                    <div class="col-md-8">
-                        <input asp-for="Input.Name" class="form-control rounded-pill" />
-                         <span asp-validation-for="Input.Name" class="text-danger"></span>
-                    </div>
-                </div> 
-                <div class="row m-2">
-                    <div class="col-md-4">
-                       <label asp-for="Input.picture"></label>
-                    </div>
-                    <div class="col-md-8">
-                        <input type="file" asp-for="Input.picture" class="form-control rounded-pill" />
-                         <span asp-validation-for="Input.picture" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row m-2">
-                    <div class="col-md-4">
-                       <label asp-for="Input.City"></label>
-                    </div>
-                    <div class="col-md-8">
-                        <input  asp-for="Input.City" class="form-control rounded-pill" />
-                         <span asp-validation-for="Input.City" class="text-danger"></span>
-                    </div>
-                </div>
-                
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-4">
+              <h3>Register</h3>
+           
             </div>
-                 <div class="row m-2">
-                      <div class="col-md-4">
-                            <label asp-for="Input.Password"></label>
-                       </div>
-                       <div class="col-md-8">
-                           <input asp-for="Input.Password" class="form-control rounded-pill" />
-                            <span asp-validation-for="Input.Password" class="text-danger"></span>
-                       </div>
-                  </div>
-                
-                 <div class="row m-1">
-                      <div class="col-md-4">
-                            <label asp-for="Input.ConfirmPassword"></label>
-                       </div>
-                       <div class="col-md-8">
-                           <input asp-for="Input.ConfirmPassword" class="form-control rounded-pill" />
-                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
 
-                              <button type="submit" class="btn btn-outline-primary rounded-pill w-100 mt-5">Register</button>
-                       </div>
-                  </div>
-                   @if (User.IsInRole(SD.Admin))
+            <form class="m-5" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+              <div class="form-group first">
+                  <label asp-for="Input.Email"></label>
+                  <input asp-for="Input.Email" class="form-control" />
+                   <span asp-validation-for="Input.Email" class="text-danger"></span>
+              </div>
+
+                 <div class="form-group ">
+                     <label asp-for="Input.Name"></label>
+                  
+                        <input asp-for="Input.Name" class="form-control" />
+                        <span asp-validation-for="Input.Name" class="text-danger"></span>
+                 </div>
+
+                 <div class="form-group ">
+                    
+                       <label asp-for="Input.picture"></label>
+                  
+                        <input type="file" asp-for="Input.picture" class="form-control" />
+                        <span asp-validation-for="Input.picture" class="text-danger"></span>
+                 </div>
+
+
+                 <div class="form-group ">     
+                     
+                     <label asp-for="Input.City"></label>
+                   
+                        <input  asp-for="Input.City" class="form-control" />
+                        <span asp-validation-for="Input.City" class="text-danger"></span>
+                 </div>
+                               <div class="form-group  mb-4">
+                              <label asp-for="Input.Password"></label>
+                                <input asp-for="Input.Password" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span> 
+                </div>
+
+              
+                               <div class="form-group last mb-4">
+                                <label asp-for="Input.ConfirmPassword"></label>
+                                     <input asp-for="Input.ConfirmPassword" class="form-control"/>
+                                      <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span> 
+                 </div>
+             
+     
+
+
+              <input type="submit" value="Register" class="btn btn-block btn-success mt-4">
+
+              <span class="d-block text-left my-4 text-muted">&mdash; or register with &mdash;</span>
+              
+              <div class="social-login mt-2">
+             
+             
+          
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            for details on setting up this ASP.NET application to support logging in via external services.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-warning" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+
+                @*test*@
+
+              </div>
+
+              
+       
+   
+
+                 @if (User.IsInRole(SD.Admin))
                 {
                       <div class="row">
                     <div class="col-4"></div>
@@ -102,58 +151,26 @@
                     <input type="hidden" checked name="rdUserRole"  value="@SD.user"  class="custom-radio"/> 
                 }
               
-         
-        </form>
+
+            </form>
+            </div>
+          </div>
+          
         </div>
-                 <div class="col-md-4">
-             <div class="col">
-        <section>
-         
-        </section>
-       
-        <section>
-            <h4 class="text-warning">Another Service</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
+        
+      </div>
     </div>
-        </div>
-    </div>
-</div>
+  </div>
 
-
-
-
-<div class="row">
-    <div class="col-md-4 col">
-     
-    </div>
-   
-</div>
+  
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/main.js"></script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+
+ 
