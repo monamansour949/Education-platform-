@@ -3,6 +3,7 @@ using ProjectItiTeam.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ProjectItiTeam.Models.Identity.Repositery
@@ -10,11 +11,15 @@ namespace ProjectItiTeam.Models.Identity.Repositery
     public class RepositeryUser : IRepositery
     {
         private readonly ApplicationDbContext context;
-
+        public string Image { get; set; }
+        public string Name { get; set; }
         public RepositeryUser(ApplicationDbContext context )
         {
             this.context = context;
+
+          
         }
+
         public async Task<IEnumerable<ApplicationUser>> GetAll()
         {
             var data = await context.ApplicationUsers.ToListAsync();
@@ -22,7 +27,7 @@ namespace ProjectItiTeam.Models.Identity.Repositery
         }
         public async Task<ApplicationUser> GetById(string? id)
         {
-            var data = await context.ApplicationUsers.FirstOrDefaultAsync(x=>x.Id==id);
+            ApplicationUser data = await context.ApplicationUsers.FirstOrDefaultAsync(x=>x.Id==id);
             return data;
         }
         public async Task<IEnumerable<ApplicationUser>> GetByIDTolist(string? id)

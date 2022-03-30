@@ -8,91 +8,72 @@
 }
 
 
-<h1 class="bg-primary m-2 p-1 text-white border rounded mt-3 px-4">Use a local account to  <span class="text-warning">log in..</span></h1>
 
-<div class="container-fluid border p-4 rounded box-shadow">
-    <div class="row animate__animated animate__backInLeft">
-        <div class="container-fluid row"  >
-                <div class="col-md-4 ">
-                      <img src="~/PhotoUser/login_pdn4 (1).png" class="img-fluid" />
-                       
-                </div> 
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-              <div class="col-md-6 mt-5 text-center">
-     
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="~/css/style.css">
+
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 order-md-2">
+          <img src="~/images/undraw_file_sync_ot38.svg" alt="Image" class="img-fluid">
         </div>
-
-        </div>
-     
-     </div>
-
-        <div >
-            <div class="col-md-8 m-5 animate__animated animate__fadeInUp">
-                <h3 class="text-primary">User Account</h3>
-                   <form id="account" method="post">
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="row">
-                    <div class="col-md-4">
-                     <label asp-for="Input.Email"></label>
-                    </div>
-                    <div class="col-md-8">
-                        <input asp-for="Input.Email" class="form-control rounded-pill" />
-                        <span asp-validation-for="Input.Email" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class ="mt-1">
-
-                </div>
-                <div class="row ">
-                    <div class="col-md-4">
-                         <label asp-for="Input.Password"></label>
-                    </div>
-                    <div class="col-md-8">
-                        <input asp-for="Input.Password" class="form-control rounded-pill" />
-                         <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    </div>
-                </div>
-                 <div class="row">
-                    <div class="col-md-4">
-                         <label asp-for="Input.RememberMe"></label>
-                    </div>
-                    <div class="col-md-8">
-                         <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                          <button type="submit" class="btn btn-outline-warning rounded-pill w-100 ">Log in</button>
-                    </div> 
-                </div>
-            
-               
-                <div class="row mt-4">
-                    <div class="col-md-4">
-                        <a id="forgot-password" class="btn btn-outline-primary rounded-pill w-100" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </div>
-                    <div class="col-md-4">
-                        <a asp-page="./Register" class="btn btn-outline-info rounded-pill w-100" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </div>
-                    <div class="col-md-4">
-                        <a id="resend-confirmation" class="btn btn-outline-info rounded-pill w-100" asp-page="./ResendEmailConfirmation">Resend email</a>
-                    </div>
-                </div>
-            </form>
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-4">
+              <h3>Log In to <strong>Speaky</strong></h3>
+              <p class="mb-4">Learning Today,Leading Tomorrow.We will help you go further</p>
             </div>
+            <form id="account" method="post">
+              <div asp-validation-summary="All" class="text-danger"></div>
 
-               <div class="col-md-4">
-             <div class="col">
-    <div class="col-md-4">
-        <section>
-         
-        </section>
-    </div>
-    <div class="col">
-        <section>
-            <h4 class="text-left text-danger">Another Service</h4>
-            <hr />
-            @{
+              <div class="form-group first">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+              </div>
+              <div class="form-group last mb-4">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                
+              </div>
+              
+              <div class="d-flex mb-5 align-items-center">
+                <label class="control control--checkbox mb-0"><span class="caption" asp-for="Input.RememberMe"></span>
+                  <input type="checkbox" checked="checked"/>
+                    <input asp-for="Input.RememberMe" />
+                  @Html.DisplayNameFor(m => m.Input.RememberMe)
+                  <div class="control__indicator"></div>
+                </label>
+              
+                
+           
+                <span class="ml-auto"><a asp-page="./ForgotPassword" class="forgot-pass" id="forgot-password" >Forgot Password</a></span> 
+              </div>
+
+              <input type="submit" value="Log In" class="btn text-white btn-block btn-success">
+           
+              <button asp-page="./Register" class="btn text-light btn-block btn-dark" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</button>
+              <button id="resend-confirmation" class="btn text-light btn-block btn-dark" asp-page="./ResendEmailConfirmation">Resend email</button>
+
+              <span class="d-block text-left my-4 text-muted"> or log in with</span>
+              
+              <div class="social-login">
+                 @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                     <div>
@@ -109,19 +90,31 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    <button type="submit" class="btn btn-warning" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
                                 }
                             </p>
                         </div>
                     </form>
                 }
             }
-        </section>
-    </div>
-</div>
+              </div>
+            </form>
             </div>
+          </div>
+          
         </div>
-</div>
+        
+      </div>
+    </div>
+  </div>
+
+  
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+
 
 
 
