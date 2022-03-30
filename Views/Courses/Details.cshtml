@@ -79,10 +79,53 @@
         </div>
     </div>
 </div>
+<ul>
+  @*<h2>AllComments</h2>*@
 
-  
+@foreach(Comment item in ViewBag.comments)
+{
+<li> @item.Id : @item.Text </li>
+}
+</ul>
+<div> </div>
+@*    comments part
+*@  
+<ul id="newComment">
+
+</ul>
+Comment:<input type="text" name="comment" id="comment" class="form-control" />
+<br/>
+
+<input type="button" onclick = "SendComment()" value="Add" class="btn btn-success" />
+<br/>
 <script>
+    // add Comment 
+        var CommentHubConnection = new signalR.HubConnectionBuilder().withUrl("/CommentHub").build();
+       // var  CommentText = document.getElementById("comment").value;
+        CommentHubConnection.on("NewComment",function (UserName,  CommentText, CourseId )
+        {
+            if(@Model.courses.Id ===CourseId)
+            {
+                document.getElementById("newComment").innerHTML+=
+                "<li>"+UserName +":" +CommentText+"</li>";
+            }
+        });
 
+        CommentHubConnection.start().then(function(){
+        console.log("Connect Success");
+            });
+
+          var SendComment=  function ()
+            {
+
+            var text = document.getElementById("comment").value;
+
+            CommentHubConnection.invoke("WriteComment","@(User.Identity.Name)",text,"@(Model.courses.Id)");
+
+            };
+        
+</Script>
+<script>
     //Hub 
     var hubConnection=
            new signalR.HubConnectionBuilder().withUrl("/Chat").build();

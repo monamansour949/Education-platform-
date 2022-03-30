@@ -34,7 +34,7 @@ namespace ProjectItiTeam.Data
         public DbSet<choice> Choices { get; set; }
         public DbSet<TrueAndFalse> TrueAndFalses { get; set; }
         public DbSet<Quiz> Quizzes  { get; set; }
-
+public DbSet<Comment> comments { get; set; }
 
 
 

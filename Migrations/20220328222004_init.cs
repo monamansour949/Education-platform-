@@ -304,6 +304,7 @@ namespace ProjectItiTeam.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Stars = table.Column<int>(type: "int", maxLength: 5, nullable: false),
+                    dislike = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Course_ID = table.Column<int>(type: "int", nullable: false),
                     User_ID = table.Column<int>(type: "int", nullable: false),

@@ -16,6 +16,7 @@ namespace ProjectItiTeam.Models
         public string User_Id { get; set; }
         public virtual Level Level { get; set; }
         public virtual List<Exam> Exams { get; set; } // mahran add
-    }
+        public virtual List<Comment> Comments { get; set; }
+     }
 
 }

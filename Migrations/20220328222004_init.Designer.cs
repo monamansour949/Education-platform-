@@ -10,7 +10,7 @@ using ProjectItiTeam.Data;
 namespace ProjectItiTeam.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220328071832_init")]
+    [Migration("20220328222004_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -407,6 +407,9 @@ namespace ProjectItiTeam.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("User_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("dislike")
                         .HasColumnType("int");
 
                     b.HasKey("ID");

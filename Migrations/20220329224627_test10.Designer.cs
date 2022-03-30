@@ -10,8 +10,8 @@ using ProjectItiTeam.Data;
 namespace ProjectItiTeam.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220327192905_ini2t")]
-    partial class ini2t
+    [Migration("20220329224627_test10")]
+    partial class test10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -245,6 +245,9 @@ namespace ProjectItiTeam.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AudioUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .HasMaxLength(90)
                         .HasColumnType("nvarchar(90)");
@@ -265,6 +268,34 @@ namespace ProjectItiTeam.Migrations
                     b.HasIndex("Level_ID");
 
                     b.ToTable("Audios");
+                });
+
+            modelBuilder.Entity("ProjectItiTeam.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("comments");
                 });
 
             modelBuilder.Entity("ProjectItiTeam.Models.Course", b =>
@@ -437,6 +468,10 @@ namespace ProjectItiTeam.Migrations
 
                     b.Property<int>("User_Id")
                         .HasColumnType("int");
+
+                    b.Property<string>("VideoUrl")
+                        .HasMaxLength(90)
+                        .HasColumnType("nvarchar(90)");
 
                     b.HasKey("ID");
 
@@ -629,6 +664,23 @@ namespace ProjectItiTeam.Migrations
                     b.Navigation("Level");
                 });
 
+            modelBuilder.Entity("ProjectItiTeam.Models.Comment", b =>
+                {
+                    b.HasOne("ProjectItiTeam.Models.Course", "Course")
+                        .WithMany("Comments")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjectItiTeam.Models.Identity.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ProjectItiTeam.Models.Course", b =>
                 {
                     b.HasOne("ProjectItiTeam.Models.Level", "Level")
@@ -741,6 +793,8 @@ namespace ProjectItiTeam.Migrations
 
             modelBuilder.Entity("ProjectItiTeam.Models.Course", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Exams");
                 });
 

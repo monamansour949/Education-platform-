@@ -17,7 +17,7 @@ namespace ProjectItiTeam.Controllers
         public IActionResult Index(int id)
         {
             List<MCQ> MCQs = MCQRepository.GetAllBylevelId(id);
-            return View();
+            return View(MCQs);
         }
         public IActionResult Details(int id)
         {

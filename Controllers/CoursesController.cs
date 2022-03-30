@@ -17,13 +17,15 @@ namespace ProjectItiTeam.Controllers
         private readonly ILevelRepository LevelRepository;
         private readonly IRepositery repositery;
         private readonly IRateRepository rateRepo;
-
-        public CoursesController(ICourseRepository courseRepository,ILevelRepository repo, IRepositery repositery, IRateRepository rateRepo)
+        ICommentRepository commentRepository;
+        public CoursesController(ICourseRepository courseRepository,ILevelRepository repo, IRepositery repositery,
+            IRateRepository rateRepo , ICommentRepository commentRepos )
         {
             this.CourseRepository = courseRepository;
             this.LevelRepository = repo;
             this.repositery = repositery;
             this.rateRepo = rateRepo;
+            this.commentRepository = commentRepos;
         }
         public IActionResult Index()
         {
@@ -93,6 +95,7 @@ namespace ProjectItiTeam.Controllers
             {
                 ViewBag.dataa = data;
             }
+            ViewBag.Comments = commentRepository.GetAll(id);
             return View(model);
         }
         [HttpGet]
