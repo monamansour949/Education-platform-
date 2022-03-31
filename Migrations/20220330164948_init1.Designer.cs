@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectItiTeam.Data;
 
 namespace ProjectItiTeam.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220330164948_init1")]
+    partial class init1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -473,36 +475,6 @@ namespace ProjectItiTeam.Migrations
                     b.ToTable("Rates");
                 });
 
-            modelBuilder.Entity("ProjectItiTeam.Models.Rate_Artical", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Artical_ID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Stars")
-                        .HasMaxLength(5)
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("dislike")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("Artical_ID");
-
-                    b.ToTable("Rate_Articals");
-                });
-
             modelBuilder.Entity("ProjectItiTeam.Models.Video", b =>
                 {
                     b.Property<int>("ID")
@@ -790,17 +762,6 @@ namespace ProjectItiTeam.Migrations
                         .IsRequired();
 
                     b.Navigation("Course");
-                });
-
-            modelBuilder.Entity("ProjectItiTeam.Models.Rate_Artical", b =>
-                {
-                    b.HasOne("ProjectItiTeam.Models.Artical", "Artical")
-                        .WithMany()
-                        .HasForeignKey("Artical_ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Artical");
                 });
 
             modelBuilder.Entity("ProjectItiTeam.Models.Video", b =>

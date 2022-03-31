@@ -27,11 +27,14 @@ namespace ProjectItiTeam.Data
         public DbSet<Course> Courses { get; set; }
         public DbSet<Level> levels { get; set; }
         public DbSet<Video> Videos { get; set; }
+        public DbSet<Rate_Artical> Rate_Articals { get; set; }
         public DbSet<Audio> Audios { get; set; }
         public DbSet<Rate> Rates { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<MCQ> MCQs { get; set; }
         public DbSet<choice> Choices { get; set; }
+        public DbSet<Artical> Articals { get; set; }
+        
         public DbSet<TrueAndFalse> TrueAndFalses { get; set; }
         public DbSet<Quiz> Quizzes  { get; set; }
 public DbSet<Comment> comments { get; set; }

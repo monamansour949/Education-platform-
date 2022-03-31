@@ -71,6 +71,7 @@
              </div>
              @foreach (var item in Model.coursesLi.Take(10))
             {
+                <img src="@item.Image" />
                 <h2 class="bg-primary text-light p-1 rounded box-shadow text-center"><a asp-action="Details" class="btn text-light " asp-route-Id="@item.Id">@item.Name</a></h2>
             }
         </div>

@@ -1,0 +1,101 @@
+﻿@model ProjectItiTeam.Models.ViewModel.ModelViewIndex
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="p-1 text-primary box-shadow rounded">Article About English</h1>
+ <div class="container">
+     <div class="row">
+         <div class="col-md-3">
+             <div class="box-shadow p-1 border rounded">
+                 @foreach (var item in Model.coursesLi)
+                {
+                    <div class="conatiner">
+                        <img src="@item.Image"/>
+                        <hr/>
+                        <h3 class="text-center txet-success">@item.Name</h3>
+                    </div>
+                }
+             </div>
+         </div> 
+         <div class="col-md-6">
+             <div class="box-shadow p-1 border rounded">
+                 @foreach (var item in Model.ArticalLi)
+                {
+                    <div class="container m-1">
+                        <div class=" border box-shadow">
+                            <div class="container">
+                                <h3 class="text-center">@item.title</h3> &ensp; <span>@item.date</span>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-md-4 col">
+                                    <p>@item.body</p>
+                                </div>
+                                <div class="col-md-8 col">
+                                    <img src="@item.Image"/>
+
+                                </div>
+                            </div>
+                        </div>
+                          <div class="container mt-4 text-right">
+                               <a class="btn btn-light likeBtn" id="onelike" style="cursor: pointer;" data-target="@item.ID">
+                                Like <i class="fa fa-thumbs-up"></i> <span id="likeBtn" class="likeBtn badge badge-light text-primary"></span>
+                            </a> 
+                        
+                      </div>
+                    </div>   
+                }
+             </div>
+         </div> 
+         <div class="col-md-3">
+             <div class="box-shadow p-1 border rounded">
+                  @foreach (var item in Model.LevelLi)
+                    {
+                    <div class="conatiner">
+                        <h3 class="text-center txet-success">@item.Name</h3>
+                        <hr/>
+                    </div>
+                    }
+             </div>
+         </div>
+     </div>
+ </div>
+      
+              
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script>
+   
+ $(".likeBtn").click( function(){
+
+      let id= $(this).attr("data-target");
+    console.log(id);
+             $.ajax({
+            url:'/Rate_Artical/addlike?id='+id,
+            type:'GET',
+            dataType:'text',
+            success:function(data){
+                results= JSON.parse(data);
+               
+               // document.getElementById("likeBtn").innerHTML=`${results}`;
+
+                Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'success Add Like',
+                        showConfirmButton: false,
+                        timer: 1000
+                        })
+                
+                setTimeout(function(){ 
+                
+                 }, 1000);
+               }
+        
+           });
+ });
+</script>
+
+}

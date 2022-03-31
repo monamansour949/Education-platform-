@@ -10,15 +10,15 @@ using ProjectItiTeam.Data;
 namespace ProjectItiTeam.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220330115251_init")]
-    partial class init
+    [Migration("20220331204046_inint1")]
+    partial class inint1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.12")
+                .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ExamQuestion", b =>
@@ -238,6 +238,33 @@ namespace ProjectItiTeam.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ProjectItiTeam.Models.Artical", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserNAme")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Articals");
+                });
+
             modelBuilder.Entity("ProjectItiTeam.Models.Audio", b =>
                 {
                     b.Property<int>("ID")
@@ -446,6 +473,36 @@ namespace ProjectItiTeam.Migrations
                     b.HasIndex("Course_ID");
 
                     b.ToTable("Rates");
+                });
+
+            modelBuilder.Entity("ProjectItiTeam.Models.Rate_Artical", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Artical_ID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Stars")
+                        .HasMaxLength(5)
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("dislike")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("Artical_ID");
+
+                    b.ToTable("Rate_Articals");
                 });
 
             modelBuilder.Entity("ProjectItiTeam.Models.Video", b =>
@@ -735,6 +792,17 @@ namespace ProjectItiTeam.Migrations
                         .IsRequired();
 
                     b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("ProjectItiTeam.Models.Rate_Artical", b =>
+                {
+                    b.HasOne("ProjectItiTeam.Models.Artical", "Artical")
+                        .WithMany()
+                        .HasForeignKey("Artical_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Artical");
                 });
 
             modelBuilder.Entity("ProjectItiTeam.Models.Video", b =>

@@ -125,7 +125,8 @@ namespace ProjectItiTeam
             app.UseEndpoints(endpoints =>
             {
                 // endpoints.MapHub("/NotificationHub");
-                endpoints.MapHub<CommentHub>("/CommentHub");
+                endpoints.MapHub<Like_Artical_Hub>("/Like_Artical_Hub"); 
+                endpoints.MapHub<CommentHub>("/CommentHub"); 
                 endpoints.MapHub<ProductHub>("ProductHub");
                 endpoints.MapHub<ChatHub>("Chat");
                 endpoints.MapRazorPages();

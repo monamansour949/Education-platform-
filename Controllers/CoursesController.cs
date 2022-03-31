@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using ProjectItiTeam.Models;
 using ProjectItiTeam.Models.Identity.Repositery;
 using ProjectItiTeam.Models.ViewModel;
 using ProjectItiTeam.Repository;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -13,14 +17,16 @@ namespace ProjectItiTeam.Controllers
     [Authorize]
     public class CoursesController : Controller
     {
+        private readonly IWebHostEnvironment webHostEnvironment;
         ICourseRepository CourseRepository;
         private readonly ILevelRepository LevelRepository;
         private readonly IRepositery repositery;
         private readonly IRateRepository rateRepo;
         ICommentRepository commentRepository;
-        public CoursesController(ICourseRepository courseRepository,ILevelRepository repo, IRepositery repositery,
+        public CoursesController(IWebHostEnvironment WebHostEnvironment, ICourseRepository courseRepository,ILevelRepository repo, IRepositery repositery,
             IRateRepository rateRepo , ICommentRepository commentRepos )
         {
+            webHostEnvironment = WebHostEnvironment;
             this.CourseRepository = courseRepository;
             this.LevelRepository = repo;
             this.repositery = repositery;
@@ -42,6 +48,24 @@ namespace ProjectItiTeam.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(Course course)
         {
+            if (ModelState.IsValid)
+            {
+                string photoPAth = @"\PhotoCourse\default.png";
+                var files = HttpContext.Request.Form.Files;
+                if (files.Count() > 0)
+                {
+                    Guid d = Guid.NewGuid();
+
+                    string host = webHostEnvironment.WebRootPath;
+                    string ImageName = DateTime.Now.ToFileTime().ToString() + Path.GetExtension(files[0].FileName);
+                    FileStream fileStream = new FileStream(Path.Combine(host, "PhotoCourse", d + ImageName), FileMode.Create);
+                    files[0].CopyTo(fileStream);
+
+                    photoPAth = @"\PhotoCourse\" + d + ImageName;
+                }
+                course.Image = photoPAth;
+            }
+
             if (course.Name != null && course.Level_Id != 0)
             {
                 var clamidentity = (ClaimsIdentity)this.User.Identity;
@@ -69,6 +93,21 @@ namespace ProjectItiTeam.Controllers
         {
             if (ModelState.IsValid == true)
             {
+                string photoPAth = @"\PhotoCourse\default.png";
+                var files = HttpContext.Request.Form.Files;
+                if (files.Count() > 0)
+                {
+                    Guid d = Guid.NewGuid();
+
+                    string host = webHostEnvironment.WebRootPath;
+                    string ImageName = DateTime.Now.ToFileTime().ToString() + Path.GetExtension(files[0].FileName);
+                    FileStream fileStream = new FileStream(Path.Combine(host, "PhotoCourse", d + ImageName), FileMode.Create);
+                    files[0].CopyTo(fileStream);
+
+                    photoPAth = @"\PhotoCourse\" + d + ImageName;
+                }
+                newcourse.Image = photoPAth;
+
                 CourseRepository.Update(id, newcourse);
                 return RedirectToAction("Index");
             }
