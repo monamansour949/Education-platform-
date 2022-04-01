@@ -1,53 +1,17 @@
 ﻿@model IEnumerable<ProjectItiTeam.Models.Level>
 
 @{
-    ViewData["Title"] = "Index";
+    Layout = "_LevelsLayout";
 }
-<style>
-    .data{
-       background-color: #571818;
-        padding: 6px;
-        border-radius: 39px;
-        text-align: center;
-        color: burlywood;
-        font-style: initial;
-        font-family: initial;
-    }
-    .button1{
-       background-color: #b93011;
-        color: wheat;
-        padding: 6px;
-        border-radius: 40px;
-        margin: 10px;
-        transition:all 1s linear;
-        cursor: pointer;
-    }
-    .button1:hover{
-         background-color: red;
-        color: wheat;
-    }
-</style>
-<br />
-<div class="m-3">
-      <a class="btn p-1 text-primary border rounded" asp-action="Create">Create New</a>
-</div>
+
+
 @if(Model.Count()==0){
 <div class="alert alert-info">Sorry , No Exist Account .......</div>
 
 
 }else{
 
-
-<h1 class="text-success p-1 box-shadow text-center">All Data Level Course</h1>
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="mt-3">
-                 <div class="text-center">
-                     
-                <table class="table table-hover  mt-5 ">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>
@@ -63,13 +27,13 @@
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
                             <td>
-                                <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.Id">Edit
+                                <a asp-action="Edit" class="btn btn-outline-success rounded-pill" asp-route-id="@item.Id">Edit
                                     <i class="fa fa-edit"></i>
                                 </a> |
-                                <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Id">Details
+                                <a asp-action="Details" class="btn btn-outline-primary rounded-pill" asp-route-id="@item.Id">Details
                                     <i class="fa fa-info"></i>
                                 </a> |
-                                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete
+                                <a asp-action="Delete" class="btn btn-outline-danger rounded-pill" asp-route-id="@item.Id">Delete
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -77,15 +41,9 @@
                 }
                     </tbody>
                 </table>
-                 </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-             <div class="mt-3">
-                    <img src="~/PhotoUser/images (44).png" class="img-thumbnail h-100"/>
-                    <img src="~/PhotoUser/download (4).png" class="img-thumbnail h-100"/>
-                </div>
-        </div>
-    </div>
-</div>
+   
 }
+<div class=" col-md-4 me-25">
+
+ <a class="btn btn-outline-light rounded-pill w-50 me-25" asp-action="Create">Create</a>
+ </div>

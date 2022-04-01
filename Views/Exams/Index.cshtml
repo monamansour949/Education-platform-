@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<ProjectItiTeam.Models.Exam>
 
 @{
-    ViewData["Title"] = "Index";
+    Layout="_ExamLayout";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -63,3 +60,5 @@
 }
     </tbody>
 </table>
+
+ <a class="btn btn-outline-light rounded-pill w-50 me-25" asp-action="Create">Create</a>

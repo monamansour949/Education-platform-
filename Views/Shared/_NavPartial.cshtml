@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a asp-area="" asp-controller="Home" asp-action="Index">SPEAKY</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="~/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+     
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="active" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+          <li><a asp-area="" asp-controller="Courses" asp-action="Index">Courses</a></li>
+             <li><a asp-area="" asp-controller="Levels" asp-action="Index">Levels</a></li>
+          <li><a asp-area="" asp-controller="Articals" asp-action="IndexArticle">Blogs</a></li>
+          <li><a  asp-area="" asp-controller="Audio" asp-action="Index" >Audio</a></li>
+          <li><a  asp-area="" asp-area="" asp-controller="Video" asp-action="Index">Vidoes</a></li>
+           <li><a asp-area="" asp-controller="Exams" asp-action="Index">Exam</a></li>
+           <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+
+         
+        </ul>
+     
+      </nav> 
+
+     
+
+    <partial name="_LoginPartial" />
+
+
+  
+
+    </div>
+  </header><!-- End Header -->

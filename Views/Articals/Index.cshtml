@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<ProjectItiTeam.Models.Artical>
 
+
 @{
-    ViewData["Title"] = "Index";
+    Layout = "_LayoutCourseDetails";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -45,11 +42,16 @@
                 @Html.DisplayFor(modelItem => item.date)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                <a class="btn btn-outline-success rounded-pill" asp-action="Edit" asp-route-id="@item.ID">Edit</a> </td>
+                <td>
+                <a class="btn btn-outline-primary rounded-pill" asp-action="Details" asp-route-id="@item.ID">Details</a> </td>
+                <td>
+                <a class="btn btn-outline-danger rounded-pill" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+
+    <a class="btn btn-outline-primary rounded-pill w-50" asp-action="Create">Create</a>

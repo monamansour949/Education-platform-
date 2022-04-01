@@ -1,13 +1,14 @@
 ﻿@model ProjectItiTeam.Models.Level
 
+
 @{
-    ViewData["Title"] = "Create";
+    Layout="_LevelsDetailsLayout";
 }
 
 <style>
     .button1{
-        background-color:red;
-        color:white;
+       background-color: #f4ebeb;
+        color:#0d6efd;
         font-family:Tahoma;
         padding:5px;
         border-radius:7px;
@@ -17,13 +18,10 @@
         cursor:pointer;
 
     }
-    .button1:hover{
-         background-color:wheat;
-        color:red;
-    }
+ 
     .button2{
-      background-color: #f4ebeb;
-        color: #06092f;
+       background-color: #f4ebeb;
+        color: #198754;
         padding:5px;
         font-family: Tahoma;
         border-radius: 7px;
@@ -39,7 +37,7 @@
 <div class="container">
     <div class="row">
             <div class="col-md-8   box-shadow mt-3">
-                <h1 class="bg-light text-success p-1 border rounded">Create New Level Course</h1>
+                <h1 class="bg-light text-success p-1 border rounded">Create New Level </h1>
                     <form asp-action="Create" class="mt-4 p-5">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group row">
@@ -52,15 +50,15 @@
                             </div>
                         </div>
                         <div class="mt-5">
-                            <input type="submit" value="Create" class="button2 " />
-                            <a class="button1" asp-action="Index" >Back to List</a>
+                            <input type="submit" value="Create" class="button2 btn btn-outline-success rounded-pill" />
+                            <a class="button1 btn btn-outline-primary rounded-pill" asp-action="Index" >Back to List</a>
                         </div>
                     </form>
 
             </div>
             <div class="col-md-4 p-2 ">
                 <div class="mt-3">
-                    <img src="~/PhotoUser/images (44).png" class="img-thumbnail h-100"/>
+                    <img src="~/PhotoUser/levelsEnglish.jpg" class="img-thumbnail h-100"/>
                     <img src="~/PhotoUser/download (4).png" class="img-thumbnail h-100"/>
                 </div>
             </div>

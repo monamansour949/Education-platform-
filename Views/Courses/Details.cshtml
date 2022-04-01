@@ -51,14 +51,14 @@
                 <div>
                          <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
                        
-                      <div class="container mt-4 text-right">
-                        <button type="button" onclick="SendMessage()" id="btn_Like" class="btn btn-primary">
+                      <div class="container mt-4 text-right m-md-5">
+                        <button type="button" onclick="SendMessage()" id="btn_Like" class="btn btn-outline-primary rounded-pill">
                          Like <i class="fa fa-thumbs-up"></i> <span id="spanLike" class="badge badge-light text-primary">@ViewBag.dataa.Stars</span>
                         </button>
-                        <button type="button"  onclick="dislike()" id="btn_Dis_Like" class="btn btn-danger">
+                        <button type="button"  onclick="dislike()" id="btn_Dis_Like" class="btn btn-outline-danger rounded-pill">
                         Love  <i class="fa fa-heart"></i> <span id="spanDisLike" class="badge badge-light text-primary">@ViewBag.dataa.dislike</span>
                         </button>
-                        <button type="button"  onclick="Addfav()" id="btn_Dis_Like" class="btn btn-success">
+                        <button type="button"  onclick="Addfav()" id="btn_Dis_Like" class="btn btn-outline-light rounded-pill">
                           Add favourite <span id="spanDisLike" class="badge badge-light text-primary"><i class="fa fa-star"></i></span>
                         </button>
                       </div>
@@ -72,7 +72,7 @@
              @foreach (var item in Model.coursesLi.Take(10))
             {
                 <img src="@item.Image" />
-                <h2 class="bg-primary text-light p-1 rounded box-shadow text-center"><a asp-action="Details" class="btn text-light " asp-route-Id="@item.Id">@item.Name</a></h2>
+                <h2 class="bg-primary text-light p-1  box-shadow text-center"><a asp-action="Details" class="btn btn-outline-primary text-light rounded-pill " asp-route-Id="@item.Id">@item.Name</a></h2>
             }
         </div>
     </div>
@@ -89,12 +89,14 @@
 @*    comments part
 *@  
 <ul id="newComment">
-    hhhhhhhh
+    
 </ul>
-Comment:<input type="text" name="comment" id="comment" class="form-control" />
+Write a Comment ..
+ <textarea  name="comment" id="comment" class="form-control" rows="3"></textarea>
+
 <br/>
 
-<input type="button" onclick = "SendComment()" value="Add" class="btn btn-success" />
+<input type="button" onclick = "SendComment()" value="Add"  class="btn btn-outline-light rounded-pill w-25" />
 <br/>
 <script>
     // add Comment 

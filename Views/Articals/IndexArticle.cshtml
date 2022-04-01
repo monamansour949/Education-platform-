@@ -1,14 +1,47 @@
 ﻿@model ProjectItiTeam.Models.ViewModel.ModelViewIndex
 
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h1 class="p-1 text-primary box-shadow rounded">Article About English</h1>
+@{
+    Layout = "_ArticleLayout";
+}
+<style>
+.courses .course-item {
+  border-radius: 5px;
+  border: 1px solid #eef0ef;
+}
+.courses .course-content {
+  padding: 15px;
+}
+.courses .course-content h3 {
+  font-weight: 700;
+  font-size: 20px;
+}
+.courses .course-content h3 a {
+  color: #37423b;
+  transition: 0.3s;
+}
+.courses .course-content h3 a:hover {
+  color: #5fcf80;
+}
+.courses .course-content p {
+  font-size: 14px;
+  color: #777777;
+}
+.courses .course-content h4 {
+  font-size: 14px;
+  background: #5fcf80;
+  padding: 7px 14px;
+  color: #fff;
+  margin: 0;
+}
+</style>
+
+
+<h1 class="shadow-lg p-3 mb-5 bg-body rounded text-center text-success">English Blogs</h1>
  <div class="container">
      <div class="row">
          <div class="col-md-3">
-             <div class="box-shadow p-1 border rounded">
+             <div class="shadow-lg p-3 mb-5 bg-body rounded ">
                  @foreach (var item in Model.coursesLi)
                 {
                     <div class="conatiner">
@@ -20,36 +53,38 @@
              </div>
          </div> 
          <div class="col-md-6">
-             <div class="box-shadow p-1 border rounded">
+             <div class="shadow-lg p-3 mb-5 bg-body rounded">
                  @foreach (var item in Model.ArticalLi)
                 {
                     <div class="container m-1">
-                        <div class=" border box-shadow">
-                            <div class="container">
+                        <div class=" shadow-lg p-3 mb-5 bg-body rounded">
+                            <div class="card-header">
+                              
                                 <h3 class="text-center">@item.title</h3> &ensp; <span>@item.date</span>
                             </div>
-                            <div class="row p-1">
-                                <div class="col-md-4 col">
-                                    <p>@item.body</p>
-                                </div>
-                                <div class="col-md-8 col">
+                               <div class=" card-img-top">
                                     <img src="@item.Image"/>
 
                                 </div>
+                            <div>
+                                <div class=" card-text">
+                                    <p>@item.body</p>
+                                </div>
+                               
+                                 <div class="card-footer">
+                           <a class="btn btn-primary likeBtn" id="onelike" style="cursor: pointer;" data-target="@item.ID">
+                                Like <i class="fa fa-thumbs-up"></i> <span id="likeBtn" class="likeBtn badge badge-light text-primary rounded-pill w-50"></span>
+                            </a> 
+                        </div>
                             </div>
                         </div>
-                          <div class="container mt-4 text-right">
-                               <a class="btn btn-light likeBtn" id="onelike" style="cursor: pointer;" data-target="@item.ID">
-                                Like <i class="fa fa-thumbs-up"></i> <span id="likeBtn" class="likeBtn badge badge-light text-primary"></span>
-                            </a> 
-                        
-                      </div>
+   
                     </div>   
                 }
              </div>
          </div> 
          <div class="col-md-3">
-             <div class="box-shadow p-1 border rounded">
+             <div class="shadow-lg p-3 mb-5 bg-body rounded">
                   @foreach (var item in Model.LevelLi)
                     {
                     <div class="conatiner">
@@ -63,8 +98,21 @@
  </div>
       
               
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
    
@@ -98,4 +146,3 @@
  });
 </script>
 
-}

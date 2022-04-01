@@ -1,13 +1,13 @@
 ﻿@model ProjectItiTeam.Models.Artical
 
 @{
-    ViewData["Title"] = "Details";
+    Layout = "_LayoutCourseDetails";
 }
 
-<h1>Details</h1>
+<h1>Blog Details</h1>
 
 <div>
-    <h4>Artical</h4>
+   
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -42,7 +42,9 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+               <div class=" mt">
+                <a class="btn btn-outline-primary rounded-pill" asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+                <a class="btn btn-outline-light rounded-pill " asp-action="Index">Back to List</a>
 </div>
+

@@ -1,10 +1,10 @@
 ﻿@model ProjectItiTeam.Models.Artical
 
 @{
-    ViewData["Title"] = "Create";
+    Layout = "_LayoutCourseDetails";
 }
 
-<h1 class="p-2 box-shadow border rounded text-success">Create New Artical</h1>
+<h1 class="p-2 box-shadow border rounded text-light">Create New Blog</h1>
 
 <hr />
 <div class="row">
@@ -14,23 +14,23 @@
            
              
             <div class="form-group">
-                <label asp-for="title" class="control-label"></label>
+                <label asp-for="title" class="control-label"> Title</label>
                 <input asp-for="title" class="form-control" />
                 <span asp-validation-for="title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="body" class="control-label"></label>
+                <label asp-for="body" class="control-label"> Body</label>
                 <textarea cols="6" action="6" asp-for="body" class="form-control" ></textarea>
                 <span asp-validation-for="body" class="text-danger"></span>
             </div>
             
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input type="file" asp-for="Image" class="form-control" />
+                <label asp-for="Image" class="control-label"> Image</label>
+                <input type="file" asp-for="Image" class="form-control"/>
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="form-control btn btn-primary" />
+            <div class="form-group mt-4">
+                <input type="submit" value="Create" class="form-control btn btn-primary rounded-pill w-100" />
             </div>
         </form>
     </div>
@@ -40,6 +40,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
